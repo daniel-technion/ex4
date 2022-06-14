@@ -6,15 +6,14 @@
 class Card
 {
     public:
+    Card() = default;
     ~Card() = default;
     Card(const Card& card) = default; 
     Card& operator=(const Card& card) = default;
-    virtual Card* clone() const = 0;
+    //virtual Card* clone() const = 0;
 
     virtual void applyEncounter(Player& player) const = 0;
-
-    protected:
-    Card();
+    virtual string getName() const =0;
 
 };
 

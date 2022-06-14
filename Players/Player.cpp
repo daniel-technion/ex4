@@ -103,3 +103,16 @@ int Player::getHP() const
     return m_HP;
 }
 
+void Player::weaken(int weakenBy)
+{
+    if (weakenBy<0)
+    {
+        return;
+    }
+    m_force -= weakenBy;
+}
+
+void Player::knockOut()
+{
+    m_HP = MIN_HP;
+}

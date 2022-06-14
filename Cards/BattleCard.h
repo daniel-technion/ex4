@@ -7,18 +7,18 @@
 class BattleCard : public Card
 {
     public:
-    Card* clone() const override;
+    BattleCard();
+    BattleCard(int attackForce, int loot);
+    //Card* clone() const override;
+    
     void applyEncounter(Player& player) const override;
+    virtual void loss(Player& player) const = 0;
+    void win(Player& player) const;
+    virtual string getName() const override = 0;
 
     protected:
-    BattleCard();
-
-    private:
-    const int attackForce;
-    const int loot;
-    const int hpDamage;
-    const int forecDamage;
-   
+    const int m_attackForce;
+    const int m_loot;
 };
 
 #endif

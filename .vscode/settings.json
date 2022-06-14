@@ -36,6 +36,7 @@
         "utility": "cpp",
         "typeinfo": "cpp",
         "algorithm": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "string": "cpp"
     }
 }

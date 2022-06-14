@@ -107,6 +107,19 @@ class Player {
      */
     virtual string getJob() const = 0;
 
+    /**
+     * @brief damage the force of the player by the given amount
+     * 
+     * @param weakenBy 
+     */
+    void weaken(int weakenBy);
+
+    /**
+     * @brief lower the hp of the player to minimum
+     * 
+     */
+    void knockOut();
+
     const static int MAX_LEVEL = 10;
 
     protected:
