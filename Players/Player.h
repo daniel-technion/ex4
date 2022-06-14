@@ -100,6 +100,13 @@ class Player {
      */
     friend std::ostream& operator<<(std::ostream& os, const Player& player);
 
+    /**
+     * @brief return a string with tha name of the class of the object
+     * 
+     * @return string 
+     */
+    virtual string getJob() const = 0;
+
     const static int MAX_LEVEL = 10;
 
     protected:

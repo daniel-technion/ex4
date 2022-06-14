@@ -8,6 +8,7 @@ class Rouge : public Player
     public:
     Rouge(const string& name);
     void addCoins(int coinsToAdd) override;
+    string getJob() const;
 };
 
 #endif

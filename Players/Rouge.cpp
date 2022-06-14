@@ -12,3 +12,8 @@ void Rouge::addCoins(int coinsToAdd)
     }
     m_coins = m_coins + 2*coinsToAdd;
 }
+
+string Rouge::getJob() const
+{
+    return "Rouge";
+}

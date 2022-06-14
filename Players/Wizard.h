@@ -8,6 +8,7 @@ class Wizard : public Player
     public:
     Wizard(const string& name);
     void heal(int healBy) override;
+    string getJob() const;
 };
 
 #endif

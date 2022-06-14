@@ -16,3 +16,8 @@ void Wizard::heal(int healBy)
         m_HP = m_maxHP;
     } 
 }
+
+string Wizard::getJob() const
+{
+    return "Wizard";
+}

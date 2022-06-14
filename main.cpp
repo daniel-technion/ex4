@@ -7,21 +7,13 @@
 
 int main()
 {
-    Player newPlayer("Daniel");
     Rouge rouge("im a Rouge");
     //Fighter fighter("im a fighter");
     Wizard wizard("im a wizard");
+    Fighter fighter("ima fighhter");
     
     cout << wizard << endl;
-    cout << newPlayer << endl;
-    newPlayer.damage(70);
-    wizard.damage(70);
-    cout << wizard << endl;
-    cout << newPlayer << endl;
-    newPlayer.heal(25);
-    wizard.heal(25);
-    cout << wizard << endl;
-    cout << newPlayer << endl;
-    
+    cout << rouge << endl;
+    cout << fighter << endl;
 }
 
