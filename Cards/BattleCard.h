@@ -8,7 +8,10 @@ class BattleCard : public Card
 {
     public:
     Card* clone() const override;
-    void applyEncounter() const override;
+    void applyEncounter(Player& player) const override;
+
+    protected:
+    BattleCard();
 
     private:
     const int attackForce;

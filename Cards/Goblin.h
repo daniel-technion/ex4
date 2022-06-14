@@ -1,3 +1,6 @@
+#ifndef EX4_Wizard_H
+#define EX4_Wizard_H
+
 #include "BattleCard.h"
 
 class Goblin : public BattleCard
@@ -11,3 +14,5 @@ class Goblin : public BattleCard
     const static int HP_DAMAGE_VALUE = 10; 
     const static int FORCE_DAMAGE_VALUE = 0;  
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef EX4_Vampire_H
+#define EX4_Vampire_H
+
 #include "BattleCard.h"
 
 class Vampire : public BattleCard
@@ -11,3 +14,5 @@ class Vampire : public BattleCard
     const static int HP_DAMAGE_VALUE = 10; 
     const static int FORCE_DAMAGE_VALUE = 1;
 };
+
+#endif
