@@ -9,6 +9,7 @@ class Pitfall : Card
     public:
     Pitfall() = default;
     void applyEncounter(Player& player) const override;
+    string getName() const override;
 
     private:
     const static int HP_LOSS_VALUE = 10;  

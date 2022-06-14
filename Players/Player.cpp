@@ -116,3 +116,13 @@ void Player::knockOut()
 {
     m_HP = MIN_HP;
 }
+
+string Player::getName()
+{
+    return m_name;
+}
+
+int Player::getCoins()
+{
+    return m_coins;
+}

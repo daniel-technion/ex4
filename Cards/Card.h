@@ -13,7 +13,7 @@ class Card
     //virtual Card* clone() const = 0;
 
     virtual void applyEncounter(Player& player) const = 0;
-    virtual string getName() const =0;
+    virtual string getName() const = 0;
 
 };
 

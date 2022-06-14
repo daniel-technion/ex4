@@ -1,5 +1,5 @@
 #include "Cards/Card.h"
-#include "Players/Rouge.h"
+#include "Players/Rogue.h"
 #include "Players/Player.h"
 #include "Players/Fighter.h"
 #include "Players/Wizard.h"
@@ -7,24 +7,31 @@
 #include "Cards/Dragon.h"
 #include "Cards/Goblin.h"
 #include <iostream>
+#include "Cards/Pitfall.h"
+#include "Cards/Barfight.h"
+#include "Cards/Fairy.h"
+#include "Cards/Treasure.h"
+#include "Cards/Merchant.h"
 
 int main()
 {
-    Rouge rouge("im a Rouge");
     //Fighter fighter("im a fighter");
     Wizard wizard("im a wizard");
-    Fighter fighter("ima fighhter");
+    Fighter fighter("ima fighter");
+    Rogue rogue("im a rogue");
 
     //wizard.buff(30);
-    Vampire vampire;
-    Goblin goblin;
-    Dragon dragon;
+    Pitfall pitfall;
+    Barfight barfight;
+    Fairy fairy;
+    Treasure treasure;
+    Merchant merchant;
+    //wizard.damage(100);
+    //fighter.damage(100);
+    merchant.applyEncounter(wizard);
+    //fairy.applyEncounter(fighter);
     cout << wizard << endl;
-    vampire.applyEncounter(wizard);
-    cout << wizard << endl;
-    goblin.applyEncounter(wizard);
-    cout << wizard << endl;
-    //cout << rouge << endl;
+    //cout << fighter << endl;
     //cout << fighter << endl;
 }
 

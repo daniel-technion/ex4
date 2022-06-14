@@ -120,6 +120,20 @@ class Player {
      */
     void knockOut();
 
+    /**
+     * @brief Get the Name of the player
+     * 
+     * @return string 
+     */
+    string getName();
+
+    /**
+     * @brief Get the amount of coins of the player
+     * 
+     * @return int 
+     */
+    int getCoins();
+
     const static int MAX_LEVEL = 10;
 
     protected:
