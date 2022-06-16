@@ -1,5 +1,6 @@
 #include "Barfight.h"
 #include "/home/daniel.pe/ex4/Players/Fighter.h"
+#include "/home/daniel.pe/ex4/utilities.h"
 
 string Barfight::getName() const
 {
@@ -13,5 +14,9 @@ void Barfight::applyEncounter(Player& player) const
     if (fighter==nullptr)
     {
         player.damage(HP_LOSS_VALUE); 
+        printBarfightMessage(false);
+    } else
+    {
+        printBarfightMessage(true);
     }
 }

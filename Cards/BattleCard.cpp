@@ -1,5 +1,6 @@
 #include "BattleCard.h"
 #include "/home/daniel.pe/ex4/Players/Player.h"
+#include "/home/daniel.pe/ex4/utilities.h"
 
 /*
 Card* BattleCard::clone() const
@@ -18,9 +19,11 @@ void BattleCard::applyEncounter(Player& player) const
     if (playerStrength>=m_attackForce)
     {
         win(player);
+        printWinBattle(player.getName(), getName());
     } else
     {
         loss(player);
+        printLossBattle(player.getName(), getName());
     }
 }
 
@@ -29,4 +32,3 @@ void BattleCard::win(Player& player) const
     player.levelUp();
     player.addCoins(m_loot);
 }
-

@@ -26,12 +26,20 @@ int main()
     Fairy fairy;
     Treasure treasure;
     Merchant merchant;
+    Dragon dragon;
+    Vampire vampire;
+    Goblin goblin;
     //wizard.damage(100);
     //fighter.damage(100);
-    merchant.applyEncounter(wizard);
+    treasure.applyEncounter(rogue);
+    //pitfall.applyEncounter(fighter);
     //fairy.applyEncounter(fighter);
-    cout << wizard << endl;
+    //cout << wizard << endl;
     //cout << fighter << endl;
     //cout << fighter << endl;
+    //cout << merchant;
+    //cout << dragon;
+    //cout << goblin;
+    //cout << vampire;
 }
 

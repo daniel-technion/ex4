@@ -1,4 +1,5 @@
 #include "Fairy.h"
+#include "/home/daniel.pe/ex4/utilities.h"
 
 string Fairy::getName() const
 {
@@ -13,5 +14,9 @@ void Fairy::applyEncounter(Player& player) const
     if (wizard != nullptr)
     {
         player.heal(HP_PRIZE); 
+        printFairyMessage(true);
+    } else
+    {
+        printFairyMessage(false);
     }
 }

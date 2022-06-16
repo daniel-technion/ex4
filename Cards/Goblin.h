@@ -9,6 +9,7 @@ class Goblin : public BattleCard
     Goblin();
     string getName() const override;
     void loss(Player& player) const;
+    std::ostream& print(std::ostream& os) const override;
 
     private:
     int m_hpDamage;

@@ -3,7 +3,6 @@
 
 #include "Card.h"
 
-
 class BattleCard : public Card
 {
     public:
@@ -15,6 +14,7 @@ class BattleCard : public Card
     virtual void loss(Player& player) const = 0;
     void win(Player& player) const;
     virtual string getName() const override = 0;
+    virtual std::ostream& print(std::ostream& os) const override = 0;
 
     protected:
     const int m_attackForce;

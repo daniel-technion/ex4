@@ -1,5 +1,6 @@
 #include "Pitfall.h"
 #include "/home/daniel.pe/ex4/Players/Rogue.h"
+#include "/home/daniel.pe/ex4/utilities.h"
 
 string Pitfall::getName() const
 {
@@ -13,5 +14,9 @@ void Pitfall::applyEncounter(Player& player) const
     if (rogue == nullptr)
     {
         player.damage(HP_LOSS_VALUE); 
+        printPitfallMessage(false);
+    } else
+    {
+        printPitfallMessage(true);
     }
 }

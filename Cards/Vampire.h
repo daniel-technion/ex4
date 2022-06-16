@@ -9,6 +9,7 @@ class Vampire : public BattleCard
     Vampire();
     void loss(Player& player) const override;
     string getName() const override;
+    std::ostream& print(std::ostream& os) const override;
 
     private:
     const int m_forceDamage;
