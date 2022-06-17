@@ -12,34 +12,15 @@
 #include "Cards/Fairy.h"
 #include "Cards/Treasure.h"
 #include "Cards/Merchant.h"
+#include "Exception.h"
 
 int main()
 {
-    //Fighter fighter("im a fighter");
-    Wizard wizard("im a wizard");
-    Fighter fighter("ima fighter");
-    Rogue rogue("im a rogue");
 
-    //wizard.buff(30);
-    Pitfall pitfall;
-    Barfight barfight;
-    Fairy fairy;
-    Treasure treasure;
-    Merchant merchant;
-    Dragon dragon;
-    Vampire vampire;
-    Goblin goblin;
-    //wizard.damage(100);
-    //fighter.damage(100);
-    treasure.applyEncounter(rogue);
-    //pitfall.applyEncounter(fighter);
-    //fairy.applyEncounter(fighter);
-    //cout << wizard << endl;
-    //cout << fighter << endl;
-    //cout << fighter << endl;
-    //cout << merchant;
-    //cout << dragon;
-    //cout << goblin;
-    //cout << vampire;
+std::exception e;
+std::exception er =e;
+
+cout << e.what() << endl;
+
 }
 
