@@ -1,5 +1,5 @@
 #include "Merchant.h"
-#include "/home/daniel.pe/ex4/utilities.h"
+#include "../utilities.h"
 #include <iostream>
 #include <string>
 

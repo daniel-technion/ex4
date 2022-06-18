@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "/home/daniel.pe/ex4/utilities.h"
+#include "../utilities.h"
 #include <typeinfo>
 #include <iostream>
 

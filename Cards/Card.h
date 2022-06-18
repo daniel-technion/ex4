@@ -1,7 +1,7 @@
 #ifndef EX4_CARD_H
 #define EX4_CARD_H
 
-#include "/home/daniel.pe/ex4/Players/Player.h"
+#include "../Players/Player.h"
 
 class Card
 {

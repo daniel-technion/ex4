@@ -1,5 +1,5 @@
 #include "Card.h"
-#include "/home/daniel.pe/ex4/utilities.h"
+#include "../utilities.h"
 
 std::ostream& operator<<(std::ostream& os, const Card& card)
 {

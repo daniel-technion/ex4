@@ -1,6 +1,6 @@
 #include "BattleCard.h"
-#include "/home/daniel.pe/ex4/Players/Player.h"
-#include "/home/daniel.pe/ex4/utilities.h"
+#include "../Players/Player.h"
+#include "../utilities.h"
 
 /*
 Card* BattleCard::clone() const

@@ -1,6 +1,6 @@
 #include "Pitfall.h"
-#include "/home/daniel.pe/ex4/Players/Rogue.h"
-#include "/home/daniel.pe/ex4/utilities.h"
+#include "../Players/Rogue.h"
+#include "../utilities.h"
 
 string Pitfall::getName() const
 {

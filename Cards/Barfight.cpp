@@ -1,6 +1,6 @@
 #include "Barfight.h"
-#include "/home/daniel.pe/ex4/Players/Fighter.h"
-#include "/home/daniel.pe/ex4/utilities.h"
+#include "../Players/Fighter.h"
+#include "../utilities.h"
 
 string Barfight::getName() const
 {

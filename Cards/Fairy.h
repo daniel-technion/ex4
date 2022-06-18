@@ -2,7 +2,7 @@
 #define EX4_Fairy_H
 
 #include "Card.h"
-#include "/home/daniel.pe/ex4/Players/Wizard.h"
+#include "..Players/Wizard.h"
 
 class Fairy : public Card
 {

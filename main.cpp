@@ -17,10 +17,7 @@
 int main()
 {
 
-std::exception e;
-std::exception er =e;
-
-cout << e.what() << endl;
+Barfight barfight;
 
 }
 

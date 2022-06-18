@@ -1,5 +1,5 @@
 #include "Dragon.h"
-#include "/home/daniel.pe/ex4/utilities.h"
+#include "../utilities.h"
 
 Dragon::Dragon() : BattleCard(ATTACK_FORCE_VALUE, LOOT_VALUE)
 {}
