@@ -18,7 +18,7 @@ void BattleCard::applyEncounter(Player& player) const
     int playerStrength = player.getAttackStrength();
     if (playerStrength>=m_attackForce)
     {
-        win(player);
+        win(player, false);
         printWinBattle(player.getName(), getName());
     } else
     {
@@ -27,8 +27,16 @@ void BattleCard::applyEncounter(Player& player) const
     }
 }
 
-void BattleCard::win(Player& player) const
+void BattleCard::win(Player& player, bool isGangBattle) const
 {
-    player.levelUp();
+    if (isGangBattle == false)
+    {
+        player.levelUp();
+    }
     player.addCoins(m_loot);
+}
+
+int BattleCard::getAttackForce() const
+{
+    return m_attackForce;
 }

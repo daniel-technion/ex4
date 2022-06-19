@@ -13,17 +13,21 @@
 #include "Cards/Treasure.h"
 #include "Cards/Merchant.h"
 #include "Exception.h"
+#include <vector>
+#include "Cards/Gang.h"
 
 int main()
 {
-
+    vector<BattleCard*> battleCards;
+    battleCards.push_back(new Goblin);
+    battleCards.push_back(new Goblin);
+    battleCards.push_back(new Goblin);
+    Gang gang(battleCards);
+    
     Wizard wizard("wizi");
-    for (int i=0; i<8; i++)
-    {
-        wizard.levelUp();
-    }
+    gang.applyEncounter(wizard);
+
     cout << wizard << endl;
-    cout << wizard.isWinner() << endl;
 
 }
 
