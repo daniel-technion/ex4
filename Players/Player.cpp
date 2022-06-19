@@ -60,6 +60,15 @@ bool Player::isKnockedOut() const
     return false;
 }
 
+bool Player::isWinner() const
+{
+    if(m_level == MAX_LEVEL)
+    {
+        return true;
+    }
+    return true;
+}
+
 void Player::addCoins(int coinsToAdd)
 {
     if (coinsToAdd<0)

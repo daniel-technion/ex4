@@ -54,10 +54,18 @@ class Player {
     /**
      * @brief check if the player's HP amount has reached 0
      * 
-     * @return true if m_HP==0
+     * @return true if current Hp level is minimum
      * @return false else
      */
     bool isKnockedOut() const;
+
+    /**
+     * @brief check if the player has reached max level
+     * 
+     * @return true if player is in max level
+     * @return false if not
+     */
+    bool isWinner() const;
     
     /**
      * @brief raise the player's coins amount by the number given as an argument

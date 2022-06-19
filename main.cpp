@@ -17,7 +17,13 @@
 int main()
 {
 
-Barfight barfight;
+    Wizard wizard("wizi");
+    for (int i=0; i<8; i++)
+    {
+        wizard.levelUp();
+    }
+    cout << wizard << endl;
+    cout << wizard.isWinner() << endl;
 
 }
 

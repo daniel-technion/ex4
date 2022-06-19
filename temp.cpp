@@ -1,4 +1,5 @@
 #include <fstream>
+#include <string>
 #include <queue>
 #include <iostream> // temp
 
@@ -17,12 +18,13 @@
 #include "Cards/Merchant.h"
 #include "Exception.h"
 
-
+/*
 using std::cout; // temp
 using std::endl;  // temp
 using std::string;
 using std::ifstream; 
 using std::queue;
+*/
 
 queue<string> linesToQueue(string filename)
 {
@@ -61,8 +63,6 @@ int main()
     }
     */
     queue<Card*> deck = stringToCard(lines);
+    cout <<*(deck.front()) <<endl;
     return 0;
-
-
-
 }
