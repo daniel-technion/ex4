@@ -15,9 +15,12 @@
 #include "Exception.h"
 #include <vector>
 #include "Cards/Gang.h"
+#include "Mtmchkin.h"
+
 
 int main()
 {
+    /* //TODO: delete
     vector<BattleCard*> battleCards;
     battleCards.push_back(new Goblin);
     battleCards.push_back(new Goblin);
@@ -28,6 +31,17 @@ int main()
     gang.applyEncounter(wizard);
 
     cout << wizard << endl;
+    */
 
+   try
+   {
+       Mtmchkin game("deck.txt");
+   }
+   catch(const std::exception& e)
+   {
+       std::cout << e.what() << '\n';
+   }
+   
+   // operate game
 }
 
