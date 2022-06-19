@@ -1,7 +1,34 @@
 #include "Gang.h"
 
-Gang::Gang(vector<BattleCard*>& battleCards) : m_battleCards(battleCards)
+Gang::Gang(vector<unique_ptr<BattleCard>>& battleCards)
 {
+    m_battleCards.reserve(battleCards.size());
+    vector<unique_ptr<BattleCard>>::const_iterator it = battleCards.begin();
+    for(; it != battleCards.end() ; it++)
+    {
+        m_battleCards.push_back((*it)->clone());
+    }
+}
+
+Gang::Gang(const Gang& gang)
+{
+    m_battleCards.reserve(gang.m_battleCards.size());
+    vector<unique_ptr<BattleCard>>::const_iterator it = gang.m_battleCards.begin();
+    for(; it != gang.m_battleCards.end() ; it++)
+    {
+        m_battleCards.push_back((*it)->clone());
+    }
+}
+
+Gang& Gang::operator=(const Gang& gang)
+{
+    m_battleCards.reserve(gang.m_battleCards.size());
+    vector<unique_ptr<BattleCard>>::const_iterator it = gang.m_battleCards.begin();
+    for(; it != gang.m_battleCards.end() ; it++)
+    {
+        m_battleCards.push_back((*it)->clone());
+    }
+    return *this;
 }
 
 string Gang::getName() const
@@ -11,8 +38,8 @@ string Gang::getName() const
 
 void Gang::applyEncounter(Player& player) const
 {
-    vector<BattleCard*>::const_iterator it = m_battleCards.begin();
-    vector<BattleCard*>::const_iterator end = m_battleCards.end();
+    vector<unique_ptr<BattleCard>>::const_iterator it = m_battleCards.begin();
+    vector<unique_ptr<BattleCard>>::const_iterator end = m_battleCards.end();
 
     while((it != end) && ((*it)->getAttackForce()<=player.getAttackStrength()))
     {

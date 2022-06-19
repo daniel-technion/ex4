@@ -4,6 +4,12 @@
 Vampire::Vampire() : BattleCard(ATTACK_FORCE_VALUE, LOOT_VALUE), m_forceDamage(FORCE_DAMAGE_VALUE), m_hpDamage(HP_DAMAGE_VALUE)
 {}
 
+unique_ptr<BattleCard> Vampire::clone() const
+{
+    unique_ptr<BattleCard> res (new Vampire(*this));
+    return res;
+}
+
 void Vampire::loss(Player& player) const
 {
     player.damage(m_hpDamage);

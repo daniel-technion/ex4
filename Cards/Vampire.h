@@ -7,9 +7,11 @@ class Vampire : public BattleCard
 {
     public:
     Vampire();
+    Vampire(const Vampire& vampire) = default;
     void loss(Player& player) const override;
     string getName() const override;
     std::ostream& print(std::ostream& os) const override;
+    unique_ptr<BattleCard> clone() const override;
 
     private:
     const int m_forceDamage;

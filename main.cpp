@@ -20,19 +20,24 @@
 
 int main()
 {
-    /* //TODO: delete
-    vector<BattleCard*> battleCards;
-    battleCards.push_back(new Goblin);
-    battleCards.push_back(new Goblin);
-    battleCards.push_back(new Goblin);
+     /* //TODO: delete
+    vector<unique_ptr<BattleCard>> battleCards;
+    battleCards.push_back(unique_ptr<BattleCard> (new Goblin));
+    battleCards.push_back(unique_ptr<BattleCard> (new Goblin));
+    battleCards.push_back(unique_ptr<BattleCard> (new Dragon));
     Gang gang(battleCards);
+    Gang newGang(battleCards);
+    newGang = gang;
+
     
     Wizard wizard("wizi");
     gang.applyEncounter(wizard);
+    newGang.applyEncounter(wizard);
 
     cout << wizard << endl;
     */
 
+   
    try
    {
        Mtmchkin game("deck.txt");
@@ -41,7 +46,7 @@ int main()
    {
        std::cout << e.what() << '\n';
    }
-   
+    
    // operate game
 }
 

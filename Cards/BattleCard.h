@@ -2,12 +2,14 @@
 #define EX4_BATTLE_CARD_H
 
 #include "Card.h"
+#include <memory>
 
 class BattleCard : public Card
 {
     public:
     BattleCard(int attackForce, int loot);
-    //Card* clone() const override;
+    virtual unique_ptr<BattleCard> clone() const = 0;
+
     
     void applyEncounter(Player& player) const override;
     virtual void loss(Player& player) const = 0;

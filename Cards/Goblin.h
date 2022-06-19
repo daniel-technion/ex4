@@ -7,9 +7,11 @@ class Goblin : public BattleCard
 {
     public:
     Goblin();
+    Goblin(const Goblin& goblin) = default;
     string getName() const override;
     void loss(Player& player) const;
     std::ostream& print(std::ostream& os) const override;
+    unique_ptr<BattleCard> clone() const override;
 
     private:
     int m_hpDamage;

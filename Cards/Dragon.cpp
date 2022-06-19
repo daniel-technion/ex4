@@ -1,8 +1,14 @@
 #include "Dragon.h"
-#include "../utilities.h"
+
 
 Dragon::Dragon() : BattleCard(ATTACK_FORCE_VALUE, LOOT_VALUE)
 {}
+
+unique_ptr<BattleCard> Dragon::clone() const
+{
+    unique_ptr<BattleCard> res (new Dragon(*this));
+    return res;
+}
 
 string Dragon::getName() const
 {
