@@ -1,6 +1,11 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
 
+#include <queue>
+#include <vector>
+using std::queue;
+using std::vector;
+
 class Mtmchkin{
 
 public:
@@ -13,6 +18,8 @@ public:
     *      A new instance of Mtmchkin.
     */
     Mtmchkin(const std::string fileName);
+   
+    ~Mtmchkin() = default; //TODO: lachon?
     
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -46,6 +53,15 @@ public:
     *          int - number of rounds played
     */
     int getNumberOfRounds() const;
+
+
+    private:
+    queue<Player*> m_activePlayers;
+    vector<Player*> m_winners;
+    vector<Player*> m_losers;
+    queue<Card*> m_deck;
+    int m_moveCount = 0;
+
 };
 
 

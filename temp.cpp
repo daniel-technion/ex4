@@ -2,6 +2,11 @@
 #include <queue>
 #include <iostream> // temp
 
+#include "Cards/Card.h"
+#include "Players/Rogue.h"
+#include "Players/Player.h"
+#include "Players/Fighter.h"
+#include "Players/Wizard.h"
 #include "Cards/Vampire.h"
 #include "Cards/Dragon.h"
 #include "Cards/Goblin.h"
@@ -10,6 +15,7 @@
 #include "Cards/Fairy.h"
 #include "Cards/Treasure.h"
 #include "Cards/Merchant.h"
+#include "Exception.h"
 
 
 using std::cout; // temp
@@ -32,11 +38,14 @@ queue<string> linesToQueue(string filename)
     return lines;
 }
 
-queue<card> stringToCard(queue<string> names)
+queue<Card*> stringToCard(queue<string> names)
 {
-    queue<card> deck;
-    //for(int i=0; i<names.size)
-    return deck
+    queue<Card*> deck;
+    for(unsigned int i=0; i<names.size(); ++i)
+    {
+        deck.push(new Fairy());
+    }
+    return deck;
 }
 
 int main()
@@ -51,7 +60,7 @@ int main()
         i++;
     }
     */
-    queue<card> deck = stringToCard(lines);
+    queue<Card*> deck = stringToCard(lines);
     return 0;
 
 
