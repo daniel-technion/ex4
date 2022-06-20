@@ -133,42 +133,45 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_deck(stringsToDeck(linesToVec
 
 void Mtmchkin::playRound()
 {
-    if(m_activePlayers.size() == 0))
+    if(m_activePlayers.size() == 0)
     {
         return;
     }
-    unique_ptr<Card>> currentCard(move(m_deck.pop()));
-    unique_ptr<Player>> currentPlayer(move(m_activePlayers.pop()));
+    unique_ptr<Card> currentCard(move(m_deck.front()));
+    m_deck.pop();
+    unique_ptr<Player> currentPlayer(move(m_activePlayers.front()));
+    m_activePlayers.pop();
     currentCard->applyEncounter(*currentPlayer);
     if(currentPlayer->isKnockedOut())
     {
-        m_losers.push(move(currentPlayer));
+        m_losers.push_back(move(currentPlayer));
     }
     else if(currentPlayer->isWinner())
     {
-        m_winners.push(move(currentPlayer));
+        m_winners.push_back(move(currentPlayer));
     }
     else
     {
         m_activePlayers.push(move(currentPlayer));
     }
-    deck.push(move(currentCard));
+    m_deck.push(move(currentCard));
     m_moveCount++;
 }
 
 void Mtmchkin::printLeaderBoard() const
 {
     int ranking = 1;
-    printLeaderBoardStartMessage;
+    printLeaderBoardStartMessage();
     for(vector<unique_ptr<Player>>::const_iterator it = m_winners.begin(); it<m_winners.end(); ++it)
     {
-        printLeaderBoard(ranking, **it);
+        printLeaderBoard(ranking, *(*it));
         ranking++;
     }
     for(unsigned int i=0; i<m_activePlayers.size(); ++i)
     {
         printLeaderBoard(ranking, *m_activePlayers.front());
-        m_activePlayers.push(move(m_activePlayers.pop()));
+        m_activePlayers.push(move(m_activePlayers.front()));
+        m_activePlayers.pop();
         ranking++;
     }
     unsigned int i = m_losers.size() - 1;
