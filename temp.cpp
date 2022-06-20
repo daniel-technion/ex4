@@ -1,3 +1,4 @@
+
 #include <fstream>
 #include <string>
 #include <queue>
@@ -89,6 +90,7 @@ unique_ptr<Card> stringToCard(string name)
         return card;
 }
 
+
 queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
 {
     queue<unique_ptr<Card>> deck;
@@ -110,7 +112,7 @@ queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
         if(current_str == "EndGang" && readingGang)
         {
             unique_ptr<Card> gang(new Gang(monsters));
-            deck.push(gang);
+            deck.push(move(gang));
             monsters.clear();
             readingGang = false;
         }
@@ -122,20 +124,20 @@ queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
 
         if(current_str != "Gang" && current_str != "EndGang" && readingGang)
         {
-            Card currentCard = stringToCard(current_str);
-            const BattleCard* battleCard = dynamic_cast<const BattleCard*>(currentCard);
-            if(battleCard == nullptr)
+            if(names[i] != "Goblin" && names[i] != "Vampire" && names[i] != "Dragon")
                 throw DeckFileFormatError(i);
-            BattleCard monster = static_cast<BattleCard>(stringToCard(names[i]));
-            unique_ptr<BattleCard> monster_ptr(monster);
-            monsters.push_back(monster_ptr);
+            if(names[i] == "Goblin")
+            {
+                unique_ptr<BattleCard> currentCard(new Goblin());
+                monsters.push_back(move(currentCard));
+            }
         }
 
         if(current_str!= "Gang" && current_str != "EndGang" && !readingGang)
         {
             if(stringToCard(current_str) == nullptr)
                 throw DeckFileFormatError(i);
-            deck.push(stringToCard(current_str));
+            deck.push(move(stringToCard(current_str)));
 
         }
     }
@@ -155,3 +157,4 @@ int main()
     cout <<*(deck.front()) <<endl;
     return 0;
 }
+
