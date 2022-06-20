@@ -24,6 +24,7 @@
 #include "Cards/Merchant.h"
 #include "Cards/Gang.h"
 #include "Exception.h"
+#include "utilities.h"
 
 using std::cout; // temp
 using std::endl;  // temp
@@ -87,10 +88,11 @@ public:
     queue<unique_ptr<Card>> m_deck;
     int m_moveCount = 0;
 
-    static void playersInitialization();
+    static  deque<unique_ptr<Player>> playersInitialization();
     static bool validateTeamSizeInput(string input);
     static bool validatePlayerNameInput(string input);
     static bool validatePlayerTypeInput(string input);
+    static unique_ptr<Player> stringToPlayer(string playerType, string playerName)
 };
 
 #endif /* MTMCHKIN_H_ */

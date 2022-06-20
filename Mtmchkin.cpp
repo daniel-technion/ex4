@@ -118,18 +118,9 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
     return deck;
 }
 
-Mtmchkin::Mtmchkin(const std::string fileName) : m_deck(stringsToDeck(linesToVector(fileName)))
-{
-    
-    //vector<string> lines = linesToVector(fileName);
-    //queue<unique_ptr<Card>> deck = stringsToDeck(lines);
-    //cout <<*(deck.front()) <<endl;
-
-    unique_ptr<Player> player1(new Fighter("israel"));
-    unique_ptr<Player> player2(new Rogue("usa"));
-    m_activePlayers.push_back(move(player1));
-    m_activePlayers.push_back(move(player2));
-}
+Mtmchkin::Mtmchkin(const std::string fileName) : m_deck(stringsToDeck(linesToVector(fileName))),
+                                                 m_activePlayers(playersInitialization())
+{}
 
 void Mtmchkin::playRound()
 {
@@ -191,19 +182,19 @@ int Mtmchkin::getNumberOfRounds() const
     return m_moveCount;
 }
 
-void Mtmchkin::playersInitialization()
+ deque<unique_ptr<Player>> Mtmchkin::playersInitialization()
 {
-        printStartGameMessage();
+    deque<unique_ptr<Player>> players;
+    printStartGameMessage();
     printEnterTeamSizeMessage();
     string input = "";
     std::getline (std::cin,input);
-     while (!validateTeamSizeInput(input))
-     {
+    while (!validateTeamSizeInput(input))
+    {
         printInvalidTeamSize();
         std::getline (std::cin,input);     
     }
     int numberOfPlayers=stoi(input);
-
     for (int i=0; i<numberOfPlayers; i++)
     {
         string playerName = "";
@@ -221,7 +212,8 @@ void Mtmchkin::playersInitialization()
             printInvalidClass();
             cin >> playerType;
         }
-        //TODO: CREATE NEW PLAYER HERE
+        players.push_back(move(stringToPlayer(playerType, playerName)));
+        return players;
     }
 }
 
@@ -272,5 +264,25 @@ bool Mtmchkin::validatePlayerTypeInput(string input)
         return false;
     }
     return true;
+}
+
+unique_ptr<Player> Mtmchkin::stringToPlayer(string playerType, string playerName)
+{
+     if(playerType == "Wizard")
+    {
+        unique_ptr<Player> player(new Wizard(playerName));
+        return player;
+    }
+     if(playerType == "Rogue")
+    {
+        unique_ptr<Player> player(new Rogue(playerName));
+        return player;
+    }
+     if(playerType == "Fighter")
+    {
+        unique_ptr<Player> player(new Fighter(playerName));
+        return player;
+    }
+
 }
 
