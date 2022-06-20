@@ -127,8 +127,8 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_deck(stringsToDeck(linesToVec
 
     unique_ptr<Player> player1(new Fighter("israel"));
     unique_ptr<Player> player2(new Rogue("usa"));
-    m_activePlayers.push(move(player1));
-    m_activePlayers.push(move(player2));
+    m_activePlayers.push_back(move(player1));
+    m_activePlayers.push_back(move(player2));
 }
 
 void Mtmchkin::playRound()
@@ -140,7 +140,7 @@ void Mtmchkin::playRound()
     unique_ptr<Card> currentCard(move(m_deck.front()));
     m_deck.pop();
     unique_ptr<Player> currentPlayer(move(m_activePlayers.front()));
-    m_activePlayers.pop();
+    m_activePlayers.pop_front();
     currentCard->applyEncounter(*currentPlayer);
     if(currentPlayer->isKnockedOut())
     {
@@ -152,7 +152,7 @@ void Mtmchkin::playRound()
     }
     else
     {
-        m_activePlayers.push(move(currentPlayer));
+        m_activePlayers.push_back(move(currentPlayer));
     }
     m_deck.push(move(currentCard));
     m_moveCount++;
@@ -162,16 +162,16 @@ void Mtmchkin::printLeaderBoard() const
 {
     int ranking = 1;
     printLeaderBoardStartMessage();
-    for(vector<unique_ptr<Player>>::const_iterator it = m_winners.begin(); it<m_winners.end(); ++it)
+    for(vector<unique_ptr<Player>>::const_iterator it = m_winners.begin(); it != m_winners.end(); ++it)
     {
         printLeaderBoard(ranking, *(*it));
         ranking++;
     }
-    for(unsigned int i=0; i<m_activePlayers.size(); ++i)
+    for(deque<unique_ptr<Player>>::const_iterator it = m_activePlayers.begin(); it != m_activePlayers.end(); ++it)
     {
         printLeaderBoard(ranking, *m_activePlayers.front());
-        m_activePlayers.push(move(m_activePlayers.front()));
-        m_activePlayers.pop();
+        m_activePlayers.push_back(move(m_activePlayers.front()));
+        m_activePlayers.pop_front();
         ranking++;
     }
     unsigned int i = m_losers.size() - 1;
