@@ -7,8 +7,32 @@
 class Fairy : public Card
 {
     public:
+    /**
+     * @brief Construct a new Fairy object
+     */
     Fairy() = default;
+
+    /**
+     * @brief Destroy the Fairy object
+     */
+    ~Fairy() = default;
+
+    /**
+     * @brief Default Copy Constructor
+     * @param fairy 
+     */
+    Fairy(const Fairy& fairy) = default;
+
+    /**
+     * @brief Default Assigment Opertor
+     * 
+     * @param fairy 
+     * @return Fairy& 
+     */
+    Fairy& operator=(const Fairy& fairy) = default;
+
     void applyEncounter(Player& player) const override;
+    
     string getName() const override;
 
     private:

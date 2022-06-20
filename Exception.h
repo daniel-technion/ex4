@@ -4,12 +4,20 @@
 #include <string>
 #include <sstream>
 
+/**
+ * @brief General Exaption Abstract Class
+ * 
+ */
 class Exception : public std::exception
 {
     public:
     virtual const char* what() const noexcept = 0;
 };
 
+/**
+ * @brief thrown whenever given deck text file is not found
+ * 
+ */
 class DeckFileNotFound : public Exception
 {
     public:
@@ -22,6 +30,10 @@ class DeckFileNotFound : public Exception
     }
 };
 
+/**
+ * @brief thrown whenever a given deck file has an invalid format
+ * 
+ */
 class DeckFileFormatError : public Exception
 {
     public:
@@ -35,9 +47,17 @@ class DeckFileFormatError : public Exception
     }
 
     private:
+    /**
+     * @brief the number of the line in which the invallid format is first found
+     * 
+     */
     int m_ErrorLineNumber;
 };
 
+/**
+ * @brief thrown whenver deck text file has less then 5 rows
+ * 
+ */
 class DeckFileInvalidSize : public Exception
 {
     public:
