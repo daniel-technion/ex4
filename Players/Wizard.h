@@ -17,7 +17,7 @@ class Wizard : public Player
      * @brief Destroy the Wizard object
      * 
      */
-    ~Wizard() = deafult;
+    ~Wizard() = default;
 
     /**
      * @brief Default Copy Constructor
