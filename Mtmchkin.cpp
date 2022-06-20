@@ -120,13 +120,15 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
 
 Mtmchkin::Mtmchkin(const std::string fileName) : m_deck(stringsToDeck(linesToVector(fileName)))
 {
+    
     //vector<string> lines = linesToVector(fileName);
     //queue<unique_ptr<Card>> deck = stringsToDeck(lines);
     //cout <<*(deck.front()) <<endl;
 
-
-
-
+    unique_ptr<Player> player1(new Fighter("israel"));
+    unique_ptr<Player> player2(new Rogue("usa"));
+    m_activePlayers.push(move(player1));
+    m_activePlayers.push(move(player2));
 }
 
 void Mtmchkin::playRound()
@@ -135,22 +137,22 @@ void Mtmchkin::playRound()
     {
         return;
     }
-    Card* currentCard = m_deck.pop();
-    Player* currentPlayer = m_activePlayers.pop();
+    unique_ptr<Card>> currentCard(move(m_deck.pop()));
+    unique_ptr<Player>> currentPlayer(move(m_activePlayers.pop()));
     currentCard->applyEncounter(*currentPlayer);
-    if(currentPlayer->isKnockedOut)
+    if(currentPlayer->isKnockedOut())
     {
-        m_losers.push(currentPlayer);
+        m_losers.push(move(currentPlayer));
     }
-    else if(currentPlayer->atMaxLevel)// to do: add mimush
+    else if(currentPlayer->isWinner())
     {
-        m_winners.push(currentPlayer);
+        m_winners.push(move(currentPlayer));
     }
     else
     {
-        m_activePlayers.push(currentPlayer);
+        m_activePlayers.push(move(currentPlayer));
     }
-    deck.push(currentCard);
+    deck.push(move(currentCard));
     m_moveCount++;
 }
 
@@ -158,7 +160,7 @@ void Mtmchkin::printLeaderBoard() const
 {
     int ranking = 1;
     printLeaderBoardStartMessage;
-    for(vector<Player*>::const_iterator it = m_winners.begin(); it<m_winners.end(); ++it)
+    for(vector<unique_ptr<Player>>::const_iterator it = m_winners.begin(); it<m_winners.end(); ++it)
     {
         printLeaderBoard(ranking, **it);
         ranking++;
@@ -166,7 +168,7 @@ void Mtmchkin::printLeaderBoard() const
     for(unsigned int i=0; i<m_activePlayers.size(); ++i)
     {
         printLeaderBoard(ranking, *m_activePlayers.front());
-        m_activePlayers.push(m_activePlayers.pop());
+        m_activePlayers.push(move(m_activePlayers.pop()));
         ranking++;
     }
     unsigned int i = m_losers.size() - 1;

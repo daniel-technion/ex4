@@ -80,9 +80,9 @@ public:
 
     private:
     queue<unique_ptr<Player>> m_activePlayers;
-    vector<unique_ptr<<Player>> m_winners;
-    vector<unique_ptr<<Player>> m_losers;
-    queue<unique_ptr<<Card>> m_deck;
+    vector<unique_ptr<Player>> m_winners;
+    vector<unique_ptr<Player>> m_losers;
+    queue<unique_ptr<Card>> m_deck;
     int m_moveCount = 0;
 
 };
