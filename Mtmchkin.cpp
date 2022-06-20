@@ -155,17 +155,17 @@ void Mtmchkin::printLeaderBoard() const
     printLeaderBoardStartMessage();
     for(vector<unique_ptr<Player>>::const_iterator it = m_winners.cbegin(); it != m_winners.cend(); ++it)
     {
-        printLeaderBoard(ranking, *(*it));
+        printPlayerLeaderBoard(ranking, **it);
         ranking++;
     }
     for(deque<unique_ptr<Player>>::const_iterator it = m_activePlayers.cbegin(); it != m_activePlayers.cend(); ++it)
     {
-        printLeaderBoard(ranking, *(*it));
+        printPlayerLeaderBoard(ranking, **it);
         ranking++;
     }
-    for(vector<unique_ptr<Player>>::const_iterator it = m_losers.crbegin(); it != m_winners.crend(); ++it)
+    for(vector<unique_ptr<Player>>::const_reverse_iterator it = m_losers.crbegin(); it != m_winners.crend(); ++it)
     {
-        printLeaderBoard(ranking, *(*it));
+        printPlayerLeaderBoard(ranking, **it);
         ranking++;
     }
 
