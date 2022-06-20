@@ -5,7 +5,6 @@
 #include <string>
 #include <queue>
 #include <vector>
-#include <deque>
 #include <memory>
 #include <iostream> // temp
 
@@ -30,9 +29,7 @@ using std::endl;  // temp
 using std::string;
 using std::ifstream; 
 using std::queue;
-using std::deque;
 using std::vector;
-
 
 class Mtmchkin{
 
@@ -82,12 +79,16 @@ public:
 
 
     private:
-    deque<unique_ptr<Player>> m_activePlayers;
+    queue<unique_ptr<Player>> m_activePlayers;
     vector<unique_ptr<Player>> m_winners;
     vector<unique_ptr<Player>> m_losers;
     queue<unique_ptr<Card>> m_deck;
     int m_moveCount = 0;
 
+    static void playersInitialization();
+    static bool validateTeamSizeInput(string input);
+    static bool validatePlayerNameInput(string input);
+    static bool validatePlayerTypeInput(string input);
 };
 
 #endif /* MTMCHKIN_H_ */
