@@ -1,8 +1,33 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
 
+#include <fstream>
+#include <string>
 #include <queue>
 #include <vector>
+#include <memory>
+#include <iostream> // temp
+
+#include "Cards/Card.h"
+#include "Players/Player.h"
+#include "Cards/Fairy.h"
+#include "Players/Rogue.h"
+#include "Players/Fighter.h"
+#include "Players/Wizard.h"
+#include "Cards/Vampire.h"
+#include "Cards/Dragon.h"
+#include "Cards/Goblin.h"
+#include "Cards/Pitfall.h"
+#include "Cards/Barfight.h"
+#include "Cards/Treasure.h"
+#include "Cards/Merchant.h"
+#include "Cards/Gang.h"
+#include "Exception.h"
+
+using std::cout; // temp
+using std::endl;  // temp
+using std::string;
+using std::ifstream; 
 using std::queue;
 using std::vector;
 
@@ -19,8 +44,6 @@ public:
     */
     Mtmchkin(const std::string fileName);
    
-    ~Mtmchkin() = default; //TODO: lachon?
-    
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
     *
@@ -56,14 +79,12 @@ public:
 
 
     private:
-    queue<Player*> m_activePlayers;
-    vector<Player*> m_winners;
-    vector<Player*> m_losers;
-    queue<Card*> m_deck;
+    queue<unique_ptr<Player>> m_activePlayers;
+    vector<unique_ptr<<Player>> m_winners;
+    vector<unique_ptr<<Player>> m_losers;
+    queue<unique_ptr<<Card>> m_deck;
     int m_moveCount = 0;
 
 };
-
-
 
 #endif /* MTMCHKIN_H_ */
