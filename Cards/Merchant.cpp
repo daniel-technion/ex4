@@ -56,11 +56,11 @@ bool Merchant::validateInput(string input)
     try
     {
         n = std::stoi(input);
-    } catch (...)
-    {
-        cout << "stoi failed";
-        return false;
     }
+    catch(const std::exception& e)
+    {
+        return false;
+    }  
     if((n != HP_CODE) && (n != FORCE_CODE) && (n != NONE_CODE))
     {
         return false;
