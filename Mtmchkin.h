@@ -92,7 +92,7 @@ public:
     static bool validateTeamSizeInput(string input);
     static bool validatePlayerNameInput(string input);
     static bool validatePlayerTypeInput(string input);
-    static unique_ptr<Player> stringToPlayer(string playerType, string playerName)
+    static unique_ptr<Player> stringToPlayer(string playerType, string playerName);
 };
 
 #endif /* MTMCHKIN_H_ */

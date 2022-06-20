@@ -118,8 +118,9 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
     return deck;
 }
 
-Mtmchkin::Mtmchkin(const std::string fileName) : m_deck(stringsToDeck(linesToVector(fileName))),
-                                                 m_activePlayers(playersInitialization())
+Mtmchkin::Mtmchkin(const std::string fileName) : m_activePlayers(playersInitialization()),
+                                                m_deck(stringsToDeck(linesToVector(fileName)))
+                                                 
 {}
 
 void Mtmchkin::playRound()
@@ -182,7 +183,7 @@ int Mtmchkin::getNumberOfRounds() const
     return m_moveCount;
 }
 
- deque<unique_ptr<Player>> Mtmchkin::playersInitialization()
+deque<unique_ptr<Player>> Mtmchkin::playersInitialization()
 {
     deque<unique_ptr<Player>> players;
     printStartGameMessage();
@@ -213,8 +214,8 @@ int Mtmchkin::getNumberOfRounds() const
             cin >> playerType;
         }
         players.push_back(move(stringToPlayer(playerType, playerName)));
-        return players;
     }
+    return players;
 }
 
 bool Mtmchkin::validateTeamSizeInput(string input)
@@ -268,7 +269,7 @@ bool Mtmchkin::validatePlayerTypeInput(string input)
 
 unique_ptr<Player> Mtmchkin::stringToPlayer(string playerType, string playerName)
 {
-     if(playerType == "Wizard")
+    if(playerType == "Wizard")
     {
         unique_ptr<Player> player(new Wizard(playerName));
         return player;
@@ -283,6 +284,6 @@ unique_ptr<Player> Mtmchkin::stringToPlayer(string playerType, string playerName
         unique_ptr<Player> player(new Fighter(playerName));
         return player;
     }
-
+    return unique_ptr<Player>(nullptr);
 }
 
