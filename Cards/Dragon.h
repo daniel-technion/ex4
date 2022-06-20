@@ -1,3 +1,7 @@
+#ifndef EX4_Dragon_H
+#define EX4_Dragon_H
+
+
 #include "BattleCard.h"
 #include "../utilities.h"
 #include <memory>
@@ -49,3 +53,5 @@ class Dragon : public BattleCard
      */
     const static int LOOT_VALUE = 1000;
 };
+
+#endif

@@ -4,7 +4,7 @@
 
 #include "Card.h"
 
-class Pitfall : Card
+class Pitfall : public Card
 {
     public:
     /**
