@@ -6,9 +6,36 @@
 class Rogue : public Player
 {
     public:
+    /**
+     * @brief Construct a new Rogue object
+     * 
+     * @param name 
+     */
     Rogue(const string& name);
+
+    /**
+     * @brief Destroy the Rogue object
+     * 
+     */
+    ~Rogue() = default;
+
+    /**
+     * @brief Default Copy Constructor
+     * 
+     * @param rogue 
+     */
+    Rogue(const Rogue& rogue) = default;
+
+    /**
+     * @brief Default Assigment Operator
+     * 
+     * @param rogue 
+     * @return Rogue& 
+     */
+    Rogue& operator=(const Rogue& rogue) = default;
+    
     void addCoins(int coinsToAdd) override;
-    string getJob() const;
+    string getJob() const override;
 };
 
 #endif
