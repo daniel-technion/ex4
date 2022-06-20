@@ -70,14 +70,28 @@ queue<Card*> stringsToDeck(queue<string> names)
 
         if(current_str == "Gang" && readingGang)
         {
+            throw DeckFileFormatError();
+        }
+
+        if(current_str == "EndGang" && readingGang)
+        {
             deck.push(new Gang(monsters));
             ~monsters;
             vector<Card*> monsters;
             readingGang = false;
         }
 
-        if(current_str != "Gang" && readingGang)
+        if(current_str == "EndGang" && !readingGang)
         {
+            throw DeckFileFormatError();
+        }
+
+
+        if(current_str != "Gang" && current_str != "EndGang" && readingGang)
+        {
+            const BattleCard* battleCard =)dynamic_cast<constBattleCard*>(stringToCard(current_str));
+            if(battleCard == nullptr)
+                throw DeckFileFormatError();
             monsters.push(stringToCard(current_str));
         }
 
@@ -88,7 +102,7 @@ queue<Card*> stringsToDeck(queue<string> names)
     }
     if (readingGang)
     {
-        // TODO: throww
+        throw DeckFileFormatError();
     }
     return deck;
 }

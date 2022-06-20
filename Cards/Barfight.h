@@ -2,6 +2,7 @@
 #define EX4_Barfight_H
 
 #include "Card.h"
+#include <memory>
 
 class Barfight : public Card
 {
