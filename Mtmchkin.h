@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <queue>
+#include <deque>
 #include <vector>
 #include <memory>
 #include <iostream> // temp
@@ -29,6 +30,7 @@ using std::endl;  // temp
 using std::string;
 using std::ifstream; 
 using std::queue;
+using std::deque;
 using std::vector;
 
 class Mtmchkin{
@@ -79,7 +81,7 @@ public:
 
 
     private:
-    queue<unique_ptr<Player>> m_activePlayers;
+    deque<unique_ptr<Player>> m_activePlayers;
     vector<unique_ptr<Player>> m_winners;
     vector<unique_ptr<Player>> m_losers;
     queue<unique_ptr<Card>> m_deck;
