@@ -22,6 +22,7 @@ Gang::Gang(const Gang& gang)
 
 Gang& Gang::operator=(const Gang& gang)
 {
+    m_battleCards.clear();
     m_battleCards.reserve(gang.m_battleCards.size());
     vector<unique_ptr<BattleCard>>::const_iterator it = gang.m_battleCards.begin();
     for(; it != gang.m_battleCards.end() ; it++)
@@ -44,12 +45,12 @@ void Gang::applyEncounter(Player& player) const
     while((it != end) && ((*it)->getAttackForce()<=player.getAttackStrength()))
     {
         (*it)->win(player,true);
-        printWinBattle(player.getName(), (*it)->getName());
         it++;
     }
     if(it == end)
     {
         player.levelUp();
+        printWinBattle(player.getName(), getName());
     }
     while(it != end)
     {

@@ -20,7 +20,7 @@
 
 int main()
 {
-     /* //TODO: delete
+    //TODO: delete
     vector<unique_ptr<BattleCard>> battleCards;
     battleCards.push_back(unique_ptr<BattleCard> (new Goblin));
     battleCards.push_back(unique_ptr<BattleCard> (new Goblin));
@@ -32,12 +32,11 @@ int main()
     
     Wizard wizard("wizi");
     gang.applyEncounter(wizard);
-    newGang.applyEncounter(wizard);
 
     cout << wizard << endl;
-    */
+    
 
-   
+   /*
    try
    {
        Mtmchkin game("deck.txt");
@@ -48,5 +47,7 @@ int main()
    }
     
    // operate game
+
+   */
 }
 
