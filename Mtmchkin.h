@@ -87,6 +87,10 @@ public:
     vector<unique_ptr<Player>> m_losers;
     queue<unique_ptr<Card>> m_deck;
     int m_moveCount = 0;
+    int m_roundCount = 0;
+    int m_roundSize = 0;
+
+
 
     static  deque<unique_ptr<Player>> playersInitialization();
     static bool validateTeamSizeInput(string input);

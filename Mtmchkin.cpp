@@ -119,35 +119,38 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
 }
 
 Mtmchkin::Mtmchkin(const std::string fileName) : m_activePlayers(playersInitialization()),
-                                                m_deck(stringsToDeck(linesToVector(fileName)))
-                                                 
+                                                 m_deck(stringsToDeck(linesToVector(fileName)))                                        
 {}
 
 void Mtmchkin::playRound()
 {
-    if(m_activePlayers.size() == 0)
+    m_roundSize = m_activePlayers.size();
+    printRoundStartMessage(++m_roundCount);
+    while(m_roundSize != 0)
     {
-        return;
+        printTurnStartMessage(m_activePlayers.front()->getName());
+        unique_ptr<Card> currentCard(move(m_deck.front()));
+        m_deck.pop();
+        unique_ptr<Player> currentPlayer(move(m_activePlayers.front()));
+        m_activePlayers.pop_front();
+        currentCard->applyEncounter(*currentPlayer);
+        if(currentPlayer->isKnockedOut())
+        {
+            m_losers.push_back(move(currentPlayer));
+        }
+        else if(currentPlayer->isWinner())
+        {
+            m_winners.push_back(move(currentPlayer));
+        }
+        else
+        {
+            m_activePlayers.push_back(move(currentPlayer));
+        }
+        m_deck.push(move(currentCard));
+        m_moveCount++;
+        m_roundSize--;
     }
-    unique_ptr<Card> currentCard(move(m_deck.front()));
-    m_deck.pop();
-    unique_ptr<Player> currentPlayer(move(m_activePlayers.front()));
-    m_activePlayers.pop_front();
-    currentCard->applyEncounter(*currentPlayer);
-    if(currentPlayer->isKnockedOut())
-    {
-        m_losers.push_back(move(currentPlayer));
-    }
-    else if(currentPlayer->isWinner())
-    {
-        m_winners.push_back(move(currentPlayer));
-    }
-    else
-    {
-        m_activePlayers.push_back(move(currentPlayer));
-    }
-    m_deck.push(move(currentCard));
-    m_moveCount++;
+    printLeaderBoard();
 }
 
 void Mtmchkin::printLeaderBoard() const
@@ -164,101 +167,11 @@ void Mtmchkin::printLeaderBoard() const
         printPlayerLeaderBoard(ranking, **it);
         ranking++;
     }
-    for(vector<unique_ptr<Player>>::const_reverse_iterator it = m_losers.crbegin(); it != m_losers.crend(); ++it)
+    for(vector<unique_ptr<Player>>::const_reverse_iterator it = m_losers.crbegin(); it != m_winners.crend(); ++it)
     {
         printPlayerLeaderBoard(ranking, **it);
         ranking++;
-    }
-
-    
-}
-
-bool Mtmchkin::isGameOver() const
-{
-<<<<<<< HEAD
-    if(m_activePlayers.size()>0)
-    {
-        return false;
-    }
-=======
-    if( m_activePlayers.size()>0)
-    return false;
->>>>>>> e4ba392d8df8341cb90380b41389de3f72306794
-    return true;
-}
-
-int Mtmchkin::getNumberOfRounds() const
-{
-    return m_moveCount;
-}
-
-deque<unique_ptr<Player>> Mtmchkin::playersInitialization()
-{
-    deque<unique_ptr<Player>> players;
-    printStartGameMessage();
-    printEnterTeamSizeMessage();
-    string input = "";
-    std::getline (std::cin,input);
-    while (!validateTeamSizeInput(input))
-    {
-        printInvalidTeamSize();
-        std::getline (std::cin,input);     
-    }
-    int numberOfPlayers=stoi(input);
-    for (int i=0; i<numberOfPlayers; i++)
-    {
-        string playerName = "";
-        string playerType = "";
-        printInsertPlayerMessage();
-        cin >> playerName;
-        while (!validatePlayerNameInput(playerName))
-        {
-            printInvalidName();
-            cin >> playerName;
-        }
-        cin >> playerType;
-        while (!validatePlayerTypeInput(playerType))
-        {
-            printInvalidClass();
-            cin >> playerType;
-        }
-        players.push_back(move(stringToPlayer(playerType, playerName)));
-    }
-    return players;
-}
-
-bool Mtmchkin::validateTeamSizeInput(string input)
-{
-    int n;
-    try
-    {
-        n = std::stoi(input);
-    }
-    catch(const std::exception& e)
-    {
-        return false;
-    }  
-    if(n>6 || n<2)
-    {
-        return false;
-    }
-    return true;
-}
-
-bool Mtmchkin::validatePlayerNameInput(string input)
-{
-    bool isOnlyLetters = true;
-    for(unsigned int i = 0; i < input.size(); i++)
-    {
-        if (!isalpha(input[i]))
-        {
-            isOnlyLetters = false;
-        }
-    }
-    bool isLengthValid = false;
-    if (input.length() <= 15)
-    {
-        isLengthValid = true;
+    }        isLengthValid = true;
     }
     if(isOnlyLetters && isLengthValid)
     {
