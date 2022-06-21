@@ -103,7 +103,7 @@ int Player::getAttackStrength() const
 std::ostream& operator<<(std::ostream& os, const Player& player)
 {
     printPlayerDetails(os, player.m_name, player.getJob(), player.m_level,
-                         player.m_force, player.getHP(), player.m_coins); //TODO: change to getHP TODO: how to get the name of the class?
+                         player.m_force, player.getHP(), player.m_coins); 
 
     return os;                   
 } 

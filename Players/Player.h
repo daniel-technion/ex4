@@ -3,7 +3,7 @@
 
 #include <string>
 
-using namespace std; //TODO: is there a problem with using 'using'? 
+using namespace std;
 
 
 class Player {
@@ -107,7 +107,7 @@ class Player {
      * @param healthPoints 
      * @return std::ostream& 
      */
-    friend std::ostream& operator<<(std::ostream& os, const Player& player);
+    friend ostream& operator<<(std::ostream& os, const Player& player);
 
     /**
      * @brief return a string with tha name of the class of the object

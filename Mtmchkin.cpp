@@ -164,7 +164,7 @@ void Mtmchkin::printLeaderBoard() const
         printPlayerLeaderBoard(ranking, **it);
         ranking++;
     }
-    for(vector<unique_ptr<Player>>::const_reverse_iterator it = m_losers.crbegin(); it != m_winners.crend(); ++it)
+    for(vector<unique_ptr<Player>>::const_reverse_iterator it = m_losers.crbegin(); it != m_losers.crend(); ++it)
     {
         printPlayerLeaderBoard(ranking, **it);
         ranking++;
@@ -175,7 +175,11 @@ void Mtmchkin::printLeaderBoard() const
 
 bool Mtmchkin::isGameOver() const
 {
-    return m_activePlayers.size();
+    if(m_activePlayers.size()>0)
+    {
+        return false;
+    }
+    return true;
 }
 
 int Mtmchkin::getNumberOfRounds() const

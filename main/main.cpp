@@ -21,10 +21,10 @@
 
 int main()
 {
-  
+
    try
    {
-       Mtmchkin game("deck.txt");
+       Mtmchkin game("mytest.txt"); //TODO: CHANGE BACK
        while(game.isGameOver()== false)
        {
            game.playRound();
@@ -34,6 +34,7 @@ int main()
    {
        std::cout << e.what() << '\n';
    }
+
 }
 
 
