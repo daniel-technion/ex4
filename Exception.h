@@ -44,6 +44,10 @@ class DeckFileFormatError : public Exception
     DeckFileFormatError(int errorLineNumber) : m_ErrorLineNumber(errorLineNumber)
                                             , m_message("Deck File Error: File format error in line "+ std::to_string(m_ErrorLineNumber)) {};
     ~DeckFileFormatError() = default;
+    const char* what() const noexcept override
+    {
+        return m_message.c_str();
+    };
 
     private:
     /**
@@ -51,10 +55,7 @@ class DeckFileFormatError : public Exception
      * 
      */
     int m_ErrorLineNumber;
-    const char* what() const noexcept override
-    {
-        return m_message.c_str();
-    };
+
 
     std::string m_message;
 };
