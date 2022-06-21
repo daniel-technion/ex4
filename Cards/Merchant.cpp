@@ -30,7 +30,7 @@ void Merchant::applyEncounter(Player& player) const
             } else
             {
                 printMerchantInsufficientCoins(std::cout);
-                printMerchantSummary(std::cout, player.getName(), NONE_CODE, NONE_CODE);
+                printMerchantSummary(std::cout, player.getName(), HP_CODE, NONE_CODE);
             }
             break;
         case FORCE_CODE:
@@ -41,7 +41,7 @@ void Merchant::applyEncounter(Player& player) const
             } else
             {
                printMerchantInsufficientCoins(std::cout); 
-               printMerchantSummary(std::cout, player.getName(), NONE_CODE, NONE_CODE);
+               printMerchantSummary(std::cout, player.getName(), FORCE_CODE, NONE_CODE);
             }
             break;
         case NONE_CODE:

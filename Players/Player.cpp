@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 Player::Player(const string& name) : m_name(name), m_force(DEFAULT_FORCE),  m_level(INITIALIZE_LEVEL),
                                       m_coins(INITIALIZE_COINS),m_HP(DEFAULT_MAX_HP), m_maxHP(DEFAULT_MAX_HP)
 {

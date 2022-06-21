@@ -2,8 +2,9 @@
 
 static vector<string> linesToVector(string filename)
 {
+    printStartGameMessage();
     vector<string> lines;
-    string line = "";
+    string line;
     ifstream input_file(filename);
     if (!input_file)
     {
@@ -213,13 +214,13 @@ int Mtmchkin::getNumberOfRounds() const
 deque<unique_ptr<Player>> Mtmchkin::playersInitialization()
 {
     deque<unique_ptr<Player>> players;
-    printStartGameMessage();
     printEnterTeamSizeMessage();
-    string input = "";
+    string input;
     std::getline (std::cin,input);
     while (!validateTeamSizeInput(input))
     {
         printInvalidTeamSize();
+        printEnterTeamSizeMessage();
         std::getline (std::cin,input);     
     }
     

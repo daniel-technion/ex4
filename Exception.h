@@ -2,7 +2,7 @@
 #define EXCEPTION_H_
 
 #include <string>
-#include <sstream>
+#include <cstring>
 
 /**
  * @brief General Exaption Abstract Class
@@ -11,7 +11,9 @@
 class Exception : public std::exception
 {
     public:
-    virtual const char* what() const noexcept = 0;
+
+    protected:
+
 };
 
 /**
@@ -21,13 +23,15 @@ class Exception : public std::exception
 class DeckFileNotFound : public Exception
 {
     public:
-    DeckFileNotFound() = default;
+    DeckFileNotFound() : m_message("Deck File Error: File not found") {};
     ~DeckFileNotFound() = default;
-
-    virtual const char* what() const noexcept override
+    const char* what() const noexcept override
     {
-       return "Deck File Error: File not found"; 
-    }
+        return m_message.c_str();
+    };
+
+    private:
+    std::string m_message;
 };
 
 /**
@@ -37,14 +41,9 @@ class DeckFileNotFound : public Exception
 class DeckFileFormatError : public Exception
 {
     public:
-    DeckFileFormatError(int errorLineNumber) : m_ErrorLineNumber(errorLineNumber) {};
+    DeckFileFormatError(int errorLineNumber) : m_ErrorLineNumber(errorLineNumber)
+                                            , m_message("Deck File Error: File format error in line "+ std::to_string(m_ErrorLineNumber)) {};
     ~DeckFileFormatError() = default;
-    virtual const char* what() const noexcept override
-    {
-       std::ostringstream os;
-       os << "Deck File Error: File format error in line " << m_ErrorLineNumber;
-       return os.str().c_str(); 
-    }
 
     private:
     /**
@@ -52,6 +51,12 @@ class DeckFileFormatError : public Exception
      * 
      */
     int m_ErrorLineNumber;
+    const char* what() const noexcept override
+    {
+        return m_message.c_str();
+    };
+
+    std::string m_message;
 };
 
 /**
@@ -61,12 +66,15 @@ class DeckFileFormatError : public Exception
 class DeckFileInvalidSize : public Exception
 {
     public:
-    DeckFileInvalidSize() = default;
+    DeckFileInvalidSize() : m_message("Deck File Error: Deck size is invalid") {};
     ~DeckFileInvalidSize() = default;
-    virtual const char* what() const noexcept override
+    const char* what() const noexcept override
     {
-       return "Deck File Error: Deck size is invalid"; 
-    }
+        return m_message.c_str();
+    };
+
+    private:
+    std::string m_message;
 };
 
 
