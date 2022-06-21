@@ -82,19 +82,17 @@ public:
 
 
     private:
+    queue<unique_ptr<Card>> m_deck;
     deque<unique_ptr<Player>> m_activePlayers;
     vector<unique_ptr<Player>> m_winners;
     vector<unique_ptr<Player>> m_losers;
-    queue<unique_ptr<Card>> m_deck;
     int m_moveCount = 0;
     int m_roundCount = 0;
     int m_roundSize = 0;
 
-
-
     static deque<unique_ptr<Player>> playersInitialization();
     static bool validateTeamSizeInput(string input);
-    static bool validatePlayerNameInput(string input);
+    static bool validateNameInput(string input);
     static bool validatePlayerTypeInput(string input);
     static unique_ptr<Player> stringToPlayer(string playerType, string playerName);
 };

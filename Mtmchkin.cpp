@@ -3,10 +3,12 @@
 static vector<string> linesToVector(string filename)
 {
     vector<string> lines;
-    string line;
-
+    string line = "";
     ifstream input_file(filename);
-
+    if (!input_file)
+    {
+        throw DeckFileNotFound();
+    }
     while (getline(input_file, line))
     {
         lines.push_back(line);
@@ -73,13 +75,12 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
         {
             readingGang = true;
         }
-
-        if(current_str == "Gang" && readingGang)
+        else if(current_str == "Gang" && readingGang)
         {
-            throw DeckFileFormatError(i);
+            throw DeckFileFormatError(i+1);
         }
 
-        if(current_str == "EndGang" && readingGang)
+        else if(current_str == "EndGang" && readingGang)
         {
             unique_ptr<Card> gang(new Gang(monsters));
             deck.push(move(gang));
@@ -87,39 +88,57 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
             readingGang = false;
         }
 
-        if(current_str == "EndGang" && !readingGang)
+        else if(current_str == "EndGang" && !readingGang)
         {
-            throw DeckFileFormatError(i);
+            throw DeckFileFormatError(i+1);
         }
 
-        if(current_str != "Gang" && current_str != "EndGang" && readingGang)
+        else if(current_str != "Gang" && current_str != "EndGang" && readingGang)
         {
             if(names[i] != "Goblin" && names[i] != "Vampire" && names[i] != "Dragon")
-                throw DeckFileFormatError(i);
+            {
+                throw DeckFileFormatError(i+1);
+            }
             if(names[i] == "Goblin")
             {
                 unique_ptr<BattleCard> currentCard(new Goblin());
                 monsters.push_back(move(currentCard));
             }
+            if(names[i] == "Vampire")
+            {
+                unique_ptr<BattleCard> currentCard(new Vampire());
+                monsters.push_back(move(currentCard));
+            }
+            if(names[i] == "Dragon")
+            {
+                unique_ptr<BattleCard> currentCard(new Dragon());
+                monsters.push_back(move(currentCard));
+            }
         }
 
-        if(current_str!= "Gang" && current_str != "EndGang" && !readingGang)
+        else if(current_str!= "Gang" && current_str != "EndGang" && !readingGang)
         {
             if(stringToCard(current_str) == nullptr)
-                throw DeckFileFormatError(i);
+            {
+                throw DeckFileFormatError(i+1);
+            }
             deck.push(move(stringToCard(current_str)));
-
         }
     }
     if (readingGang)
     {
-        throw DeckFileFormatError(names.size());
+        throw DeckFileFormatError(names.size()); //TODO: +1???????
+    }
+    if(deck.size() < 5) //TODO: CHANGE TO STATIC
+    {
+        throw DeckFileInvalidSize();
     }
     return deck;
 }
 
-Mtmchkin::Mtmchkin(const std::string fileName) : m_activePlayers(playersInitialization()),
-                                                 m_deck(stringsToDeck(linesToVector(fileName)))                                        
+Mtmchkin::Mtmchkin(const std::string fileName) : m_deck(stringsToDeck(linesToVector(fileName))),
+                                                 m_activePlayers(playersInitialization())
+                                                                                         
 {}
 
 void Mtmchkin::playRound()
@@ -147,10 +166,13 @@ void Mtmchkin::playRound()
             m_activePlayers.push_back(move(currentPlayer));
         }
         m_deck.push(move(currentCard));
-        m_moveCount++;
         m_roundSize--;
     }
-    printLeaderBoard();
+    m_moveCount++;
+    if (isGameOver())
+    {
+        printGameEndMessage();
+    }
 }
 
 void Mtmchkin::printLeaderBoard() const
@@ -200,23 +222,28 @@ deque<unique_ptr<Player>> Mtmchkin::playersInitialization()
         printInvalidTeamSize();
         std::getline (std::cin,input);     
     }
+    
     int numberOfPlayers=stoi(input);
     for (int i=0; i<numberOfPlayers; i++)
     {
-        string playerName = "";
-        string playerType = "";
         printInsertPlayerMessage();
-        cin >> playerName;
-        while (!validatePlayerNameInput(playerName))
+        std::getline (std::cin,input);
+        int pos = input.find(" ");
+        string playerName = input.substr(0 , pos); 
+        string playerType = input.substr(pos + 1);
+        while (!validateNameInput(playerName) || !validatePlayerTypeInput(playerType))
         {
-            printInvalidName();
-            cin >> playerName;
-        }
-        cin >> playerType;
-        while (!validatePlayerTypeInput(playerType))
-        {
-            printInvalidClass();
-            cin >> playerType;
+            if(!validateNameInput(playerName))
+            {
+                printInvalidName();
+            } else 
+            {
+                printInvalidClass();
+            }
+            std::getline (std::cin,input);
+            int pos = input.find(" ");
+            playerName = input.substr(0 , pos); 
+            playerType = input.substr(pos + 1);
         }
         players.push_back(move(stringToPlayer(playerType, playerName)));
     }
@@ -241,7 +268,7 @@ bool Mtmchkin::validateTeamSizeInput(string input)
     return true;
 }
 
-bool Mtmchkin::validatePlayerNameInput(string input)
+bool Mtmchkin::validateNameInput(string input)
 {
     bool isOnlyLetters = true;
     for(unsigned int i = 0; i < input.size(); i++)

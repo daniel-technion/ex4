@@ -42,7 +42,7 @@ class DeckFileFormatError : public Exception
     virtual const char* what() const noexcept override
     {
        std::ostringstream os;
-       os << "Deck File Error: File format error in line " << m_ErrorLineNumber << "\n";
+       os << "Deck File Error: File format error in line " << m_ErrorLineNumber;
        return os.str().c_str(); 
     }
 

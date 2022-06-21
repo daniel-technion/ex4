@@ -18,10 +18,9 @@
 #include "Mtmchkin.h"
 #include "utilities.h"
 
-
 int main()
 {
-
+    
    try
    {
        Mtmchkin game("mytest.txt"); //TODO: CHANGE BACK
@@ -34,7 +33,8 @@ int main()
    {
        std::cout << e.what() << '\n';
    }
-
+    
 }
+
 
 

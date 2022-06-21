@@ -1,7 +1,6 @@
 #include "Player.h"
 #include "../utilities.h"
 
-#include <typeinfo>
 #include <iostream>
 
 Player::Player(const string& name) : m_name(name), m_force(DEFAULT_FORCE),  m_level(INITIALIZE_LEVEL),
@@ -67,7 +66,7 @@ bool Player::isWinner() const
     {
         return true;
     }
-    return true;
+    return false;
 }
 
 void Player::addCoins(int coinsToAdd)
@@ -120,6 +119,10 @@ void Player::weaken(int weakenBy)
         return;
     }
     m_force -= weakenBy;
+    if(m_force<0)
+    {
+        m_force = 0;
+    }
 }
 
 void Player::knockOut()
