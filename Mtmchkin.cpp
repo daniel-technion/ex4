@@ -175,10 +175,15 @@ void Mtmchkin::printLeaderBoard() const
 
 bool Mtmchkin::isGameOver() const
 {
+<<<<<<< HEAD
     if(m_activePlayers.size()>0)
     {
         return false;
     }
+=======
+    if( m_activePlayers.size()>0)
+    return false;
+>>>>>>> e4ba392d8df8341cb90380b41389de3f72306794
     return true;
 }
 
