@@ -175,7 +175,9 @@ void Mtmchkin::printLeaderBoard() const
 
 bool Mtmchkin::isGameOver() const
 {
-    return m_activePlayers.size();
+    if( m_activePlayers.size()>0)
+    return false;
+    return true;
 }
 
 int Mtmchkin::getNumberOfRounds() const
