@@ -92,7 +92,7 @@ public:
 
 
 
-    static  deque<unique_ptr<Player>> playersInitialization();
+    static deque<unique_ptr<Player>> playersInitialization();
     static bool validateTeamSizeInput(string input);
     static bool validatePlayerNameInput(string input);
     static bool validatePlayerTypeInput(string input);

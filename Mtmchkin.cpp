@@ -167,16 +167,20 @@ void Mtmchkin::printLeaderBoard() const
         printPlayerLeaderBoard(ranking, **it);
         ranking++;
     }
-    for(vector<unique_ptr<Player>>::const_reverse_iterator it = m_losers.crbegin(); it != m_winners.crend(); ++it)
+    for(vector<unique_ptr<Player>>::const_reverse_iterator it = m_losers.crbegin(); it != m_losers.crend(); ++it)
     {
         printPlayerLeaderBoard(ranking, **it);
         ranking++;
     }     
-}
+} 
 
 bool Mtmchkin::isGameOver() const
 {
-    return m_activePlayers.size();
+    if(m_activePlayers.size()>0)
+    {
+        return false;
+    }
+    return true;
 }
 
 int Mtmchkin::getNumberOfRounds() const
@@ -184,19 +188,19 @@ int Mtmchkin::getNumberOfRounds() const
     return m_moveCount;
 }
 
-void Mtmchkin::playersInitialization()
+deque<unique_ptr<Player>> Mtmchkin::playersInitialization()
 {
+    deque<unique_ptr<Player>> players;
     printStartGameMessage();
     printEnterTeamSizeMessage();
     string input = "";
     std::getline (std::cin,input);
-     while (!validateTeamSizeInput(input))
-     {
+    while (!validateTeamSizeInput(input))
+    {
         printInvalidTeamSize();
         std::getline (std::cin,input);     
     }
     int numberOfPlayers=stoi(input);
-
     for (int i=0; i<numberOfPlayers; i++)
     {
         string playerName = "";
@@ -214,8 +218,9 @@ void Mtmchkin::playersInitialization()
             printInvalidClass();
             cin >> playerType;
         }
-        //TODO: CREATE NEW PLAYER HERE
+        players.push_back(move(stringToPlayer(playerType, playerName)));
     }
+    return players;
 }
 
 bool Mtmchkin::validateTeamSizeInput(string input)
