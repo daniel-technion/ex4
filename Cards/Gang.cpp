@@ -1,13 +1,15 @@
 #include "Gang.h"
 
-Gang::Gang(vector<unique_ptr<BattleCard>>& battleCards)
+Gang::Gang(vector<unique_ptr<BattleCard>> battleCards) : m_battleCards(move(battleCards))
 {
+    /*
     m_battleCards.reserve(battleCards.size());
     vector<unique_ptr<BattleCard>>::const_iterator it = battleCards.begin();
     for(; it != battleCards.end() ; it++)
     {
         m_battleCards.push_back((*it)->clone());
     }
+    */
 }
 
 Gang::Gang(const Gang& gang)
