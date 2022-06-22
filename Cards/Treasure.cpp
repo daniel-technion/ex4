@@ -1,6 +1,8 @@
 #include "Treasure.h"
 #include "../utilities.h"
 
+using namespace std;
+
 string Treasure::getName() const
 {
     return "Treasure";

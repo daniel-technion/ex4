@@ -1,7 +1,6 @@
 #ifndef EX4_Treasure_H
 #define EX4_Treasure_H
 
-
 #include "Card.h"
 
 class Treasure : public Card
@@ -29,7 +28,7 @@ class Treasure : public Card
 
     void applyEncounter(Player& player) const override;
 
-    string getName() const override;
+    std::string getName() const override;
 
     private:
     /**

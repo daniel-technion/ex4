@@ -15,7 +15,7 @@ class Gang : public Card
      * 
      * @param battleCards the monsters of the gang
      */
-    Gang(vector<unique_ptr<BattleCard>>& battleCards);
+    Gang(std::vector<std::unique_ptr<BattleCard>>& battleCards);
 
     /**
      * @brief Copy Constructor
@@ -39,7 +39,7 @@ class Gang : public Card
     /**
      * @brief the monsters of the gang
      */
-    vector<unique_ptr<BattleCard>> m_battleCards;
+    std::vector<std::unique_ptr<BattleCard>> m_battleCards;
 
 };
 

@@ -12,11 +12,6 @@ class Goblin : public BattleCard
     Goblin();
 
     /**
-     * @brief Destroy the Goblin object
-     */
-    //~Goblin() = default ;
-
-    /**
      * @brief Default Copy Constructor
      * @param goblin 
      */
@@ -30,10 +25,10 @@ class Goblin : public BattleCard
      */
     Goblin& operator=(const Goblin& goblin) = default;
 
-    string getName() const override;
+    std::string getName() const override;
     void loss(Player& player) const;
     std::ostream& print(std::ostream& os) const override;
-    unique_ptr<BattleCard> clone() const override;
+    std::unique_ptr<BattleCard> clone() const override;
 
     private:
     /**

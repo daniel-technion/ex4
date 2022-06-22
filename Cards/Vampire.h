@@ -12,12 +12,6 @@ class Vampire : public BattleCard
     Vampire();
 
     /**
-     * @brief Destroy the Vampire object
-     * 
-     */
-    //~Vampire() = default;
-
-    /**
      * @brief Construct a new Vampire object
      * 
      * @param vampire 
@@ -34,11 +28,11 @@ class Vampire : public BattleCard
 
     void loss(Player& player) const override;
 
-    string getName() const override;
+    std::string getName() const override;
 
     std::ostream& print(std::ostream& os) const override;
 
-    unique_ptr<BattleCard> clone() const override;
+    std::unique_ptr<BattleCard> clone() const override;
 
     private:
     /**

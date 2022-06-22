@@ -28,7 +28,7 @@ class Merchant : public Card
     Merchant& operator=(const Merchant& merchant) = default;
 
     void applyEncounter(Player& player) const override;
-    string getName() const override;
+    std::string getName() const override;
 
     private:
     /**
@@ -59,7 +59,7 @@ class Merchant : public Card
      * @return true 
      * @return false 
      */
-    static bool validateInput(string input);
+    static bool validateInput(std::string input);
 };
 
 #endif

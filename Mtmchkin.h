@@ -26,14 +26,6 @@
 #include "Exception.h"
 #include "utilities.h"
 
-using std::cout; // temp
-using std::endl;  // temp
-using std::string;
-using std::ifstream; 
-using std::queue;
-using std::deque;
-using std::vector;
-
 class Mtmchkin{
 
 public:
@@ -82,19 +74,19 @@ public:
 
 
     private:
-    queue<unique_ptr<Card>> m_deck;
-    deque<unique_ptr<Player>> m_activePlayers;
-    vector<unique_ptr<Player>> m_winners;
-    vector<unique_ptr<Player>> m_losers;
+    std::queue<std::unique_ptr<Card>> m_deck;
+    std::deque<std::unique_ptr<Player>> m_activePlayers;
+    std::vector<std::unique_ptr<Player>> m_winners;
+    std::vector<std::unique_ptr<Player>> m_losers;
     int m_moveCount = 0;
     int m_roundCount = 0;
     int m_roundSize = 0;
 
-    static deque<unique_ptr<Player>> playersInitialization();
+    static std::deque<std::unique_ptr<Player>> playersInitialization();
     static bool validateTeamSizeInput(std::string input);
     static bool validateNameInput(std::string input);
     static bool validatePlayerTypeInput(std::string input);
-    static unique_ptr<Player> stringToPlayer(std::string playerType, std::string playerName);
+    static std::unique_ptr<Player> stringToPlayer(std::string playerType, std::string playerName);
 };
 
 #endif /* MTMCHKIN_H_ */

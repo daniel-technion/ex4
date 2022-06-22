@@ -1,6 +1,8 @@
 #include "Vampire.h"
 #include "../utilities.h"
 
+using namespace std;
+
 Vampire::Vampire() : BattleCard(ATTACK_FORCE_VALUE, LOOT_VALUE), m_forceDamage(FORCE_DAMAGE_VALUE), m_hpDamage(HP_DAMAGE_VALUE)
 {}
 

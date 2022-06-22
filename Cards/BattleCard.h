@@ -39,7 +39,7 @@ class BattleCard : public Card
      * 
      * @return unique_ptr<BattleCard> 
      */
-    virtual unique_ptr<BattleCard> clone() const = 0;
+    virtual std::unique_ptr<BattleCard> clone() const = 0;
 
     void applyEncounter(Player& player) const override;
 

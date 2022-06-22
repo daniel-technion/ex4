@@ -1,6 +1,8 @@
 #include "Goblin.h"
 #include "../utilities.h"
 
+using namespace std;
+
  Goblin::Goblin() : BattleCard(ATTACK_FORCE_VALUE, LOOT_VALUE), m_hpDamage(HP_DAMAGE_VALUE)
  {}
 

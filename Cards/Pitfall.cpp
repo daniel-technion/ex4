@@ -2,6 +2,8 @@
 #include "../Players/Rogue.h"
 #include "../utilities.h"
 
+using namespace std; 
+
 string Pitfall::getName() const
 {
     return "Pitfall";

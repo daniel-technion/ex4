@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 string Merchant::getName() const
 {
     return "Merchant";
