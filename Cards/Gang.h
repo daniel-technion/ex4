@@ -18,11 +18,6 @@ class Gang : public Card
     Gang(vector<unique_ptr<BattleCard>>& battleCards);
 
     /**
-     * @brief Destroy the Gang object
-     */
-    ~Gang() = default;
-
-    /**
      * @brief Copy Constructor
      * 
      * @param gang 
@@ -38,7 +33,7 @@ class Gang : public Card
     Gang& operator=(const Gang& gang);
     
     void applyEncounter(Player& player) const override;
-    string getName() const override;
+    std::string getName() const override;
 
     private:
     /**

@@ -26,7 +26,7 @@ class Barfight : public Card
     Barfight& operator=(const Barfight& barfight)= default;
 
     void applyEncounter(Player& player) const override;
-    string getName() const override;
+    std::string getName() const override;
 
     private:
     /**

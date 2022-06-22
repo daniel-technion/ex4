@@ -1,6 +1,8 @@
 #include "Fairy.h"
 #include "../utilities.h"
 
+using namespace std;
+
 string Fairy::getName() const
 {
     return "Fairy";

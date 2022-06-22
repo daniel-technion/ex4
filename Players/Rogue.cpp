@@ -1,5 +1,7 @@
 #include "Rogue.h"
 
+using namespace std;
+
 Rogue::Rogue(const string& name) : Player(name)
 {
 }

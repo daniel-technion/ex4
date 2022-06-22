@@ -1,5 +1,7 @@
 #include "Gang.h"
 
+using namespace std;
+
 Gang::Gang(vector<unique_ptr<BattleCard>>& battleCards)
 {
     m_battleCards.reserve(battleCards.size());

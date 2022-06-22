@@ -91,10 +91,10 @@ public:
     int m_roundSize = 0;
 
     static deque<unique_ptr<Player>> playersInitialization();
-    static bool validateTeamSizeInput(string input);
-    static bool validateNameInput(string input);
-    static bool validatePlayerTypeInput(string input);
-    static unique_ptr<Player> stringToPlayer(string playerType, string playerName);
+    static bool validateTeamSizeInput(std::string input);
+    static bool validateNameInput(std::string input);
+    static bool validatePlayerTypeInput(std::string input);
+    static unique_ptr<Player> stringToPlayer(std::string playerType, std::string playerName);
 };
 
 #endif /* MTMCHKIN_H_ */

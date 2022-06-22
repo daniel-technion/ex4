@@ -41,7 +41,7 @@ class Card
      * 
      * @return string 
      */
-    virtual string getName() const = 0;
+    virtual std::string getName() const = 0;
 
     /**
      * @brief print the details of the card

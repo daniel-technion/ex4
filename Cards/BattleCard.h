@@ -58,7 +58,7 @@ class BattleCard : public Card
      */
     void win(Player& player, bool isGangBattle) const;
 
-    virtual string getName() const override = 0;
+    virtual std::string getName() const override = 0;
 
     virtual std::ostream& print(std::ostream& os) const override = 0;
 

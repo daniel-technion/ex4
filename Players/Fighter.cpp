@@ -1,5 +1,7 @@
 #include "Fighter.h"
 
+using namespace std;
+
 Fighter::Fighter(const string& name) : Player(name)
 {
 }

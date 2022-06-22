@@ -28,7 +28,7 @@ class Fairy : public Card
 
     void applyEncounter(Player& player) const override;
     
-    string getName() const override;
+    std::string getName() const override;
 
     private:
     const static int HP_PRIZE = 10;

@@ -2,6 +2,8 @@
 #include "../Players/Fighter.h"
 #include "../utilities.h"
 
+using namespace std;
+
 string Barfight::getName() const
 {
     return "Barfight";

@@ -12,7 +12,7 @@ class Player {
      * 
      * @param name name of the player 
      */
-    Player(const string& name); 
+    Player(const std::string& name); 
 
     /*
     the following are default because we are leaning on the string class d'tor + copy c'tor + assigment operator 
@@ -105,14 +105,14 @@ class Player {
      * @param healthPoints 
      * @return std::ostream& 
      */
-    friend ostream& operator<<(std::ostream& os, const Player& player);
+    friend std::ostream& operator<<(std::ostream& os, const Player& player);
 
     /**
      * @brief return a string with tha name of the class of the object
      * 
      * @return string 
      */
-    virtual string getJob() const = 0;
+    virtual std::string getJob() const = 0;
 
     /**
      * @brief damage the force of the player by the given amount
@@ -132,7 +132,7 @@ class Player {
      * 
      * @return string 
      */
-    string getName();
+    std::string getName();
 
     /**
      * @brief Get the amount of coins of the player
@@ -144,7 +144,7 @@ class Player {
     const static int MAX_LEVEL = 10;
 
     protected:
-    string m_name;
+    std::string m_name;
     int m_force; //initialized default = 5 
     int m_level; //initialized always = 1
     int m_coins; //initialized default = 10

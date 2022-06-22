@@ -1,5 +1,6 @@
 #include "Dragon.h"
 
+using namespace std;
 
 Dragon::Dragon() : BattleCard(ATTACK_FORCE_VALUE, LOOT_VALUE)
 {}

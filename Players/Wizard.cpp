@@ -1,5 +1,7 @@
 #include "Wizard.h"
 
+using namespace std;
+
 Wizard::Wizard(const string& name) : Player(name)
 {
 }

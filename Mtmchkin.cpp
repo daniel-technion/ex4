@@ -1,5 +1,7 @@
 #include "Mtmchkin.h"
 
+using namespace std;
+
 static vector<string> linesToVector(string filename)
 {
     printStartGameMessage();
@@ -84,12 +86,6 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
         else if(current_str == "EndGang" && readingGang)
         {
             unique_ptr<Card> gang(new Gang(monsters));
-            deck.push(move(gang));
-            for(unsigned int j=0; j<monsters.size(); j++)
-            {
-                monsters.pop_back();
-            }
-            //monsters.clear();
             readingGang = false;
         }
 

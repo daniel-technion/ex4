@@ -11,7 +11,7 @@ class Fighter : public Player
      * 
      * @param name 
      */
-    Fighter(const string& name);
+    Fighter(const std::string& name);
 
     /**
      * @brief Default Copy Constructor
@@ -29,7 +29,7 @@ class Fighter : public Player
     Fighter& operator=(const Fighter& fighter) = default;
 
     int getAttackStrength() const override;
-    string getJob() const override;
+    std::string getJob() const override;
 };
 
 #endif

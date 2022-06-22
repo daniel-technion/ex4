@@ -1,6 +1,8 @@
 #include "Card.h"
 #include "../utilities.h"
 
+using namespace std;
+
 std::ostream& operator<<(std::ostream& os, const Card& card)
 {
     card.print(os);

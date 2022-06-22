@@ -11,7 +11,7 @@ class Rogue : public Player
      * 
      * @param name 
      */
-    Rogue(const string& name);
+    Rogue(const std::string& name);
 
     /**
      * @brief Default Copy Constructor
@@ -29,7 +29,7 @@ class Rogue : public Player
     Rogue& operator=(const Rogue& rogue) = default;
     
     void addCoins(int coinsToAdd) override;
-    string getJob() const override;
+    std::string getJob() const override;
 };
 
 #endif

@@ -16,11 +16,6 @@ class Dragon : public BattleCard
     Dragon(); 
 
     /**
-     * @brief Destroy the Dragon object
-     */
-    //~Dragon() = default;
-
-    /**
      * @brief Default Copt Constructor
      * @param dragon 
      */
@@ -34,7 +29,7 @@ class Dragon : public BattleCard
      */
     Dragon& operator=(const Dragon& dragon) = default;
 
-    string getName() const override;
+    std::string getName() const override;
     void loss(Player& player) const override;
     std::ostream& print(std::ostream& os) const override;
     unique_ptr<BattleCard> clone() const override;

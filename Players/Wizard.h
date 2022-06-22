@@ -11,7 +11,7 @@ class Wizard : public Player
      * 
      * @param name 
      */
-    Wizard(const string& name);
+    Wizard(const std::string& name);
 
     /**
      * @brief Default Copy Constructor
@@ -29,7 +29,7 @@ class Wizard : public Player
     Wizard& operator=(const Wizard& wizard) = default;
     
     void heal(int healBy) override;
-    string getJob() const override;
+    std::string getJob() const override;
 };
 
 #endif

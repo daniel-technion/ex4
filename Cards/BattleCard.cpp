@@ -2,12 +2,7 @@
 #include "../Players/Player.h"
 #include "../utilities.h"
 
-/*
-Card* BattleCard::clone() const
-{
-    return new BattleCard(*this);
-}
-*/
+using namespace std;
 
 BattleCard::BattleCard(int attackForce, int loot) : m_attackForce(attackForce), m_loot(loot)
 {

@@ -10,7 +10,7 @@
     return res;
 }
 
-string Goblin::getName() const
+std::string Goblin::getName() const
 {
     return "Goblin";
 }
