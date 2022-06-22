@@ -90,25 +90,7 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
         }
         else if(names[i] != "Gang" && names[i] != "EndGang" && readingGang)
         {
-            if(names[i] == "Goblin")
-            {
-                unique_ptr<BattleCard> currentCard(new Goblin());
-                monsters.push_back(move(currentCard));
-            }
-
-            else if(names[i] == "Vampire")
-            {
-                unique_ptr<BattleCard> currentCard(new Vampire());
-                monsters.push_back(move(currentCard));
-            }
-
-            else if (names[i] == "Dragon")
-            {
-                unique_ptr<BattleCard> currentCard(new Dragon());
-                monsters.push_back(move(currentCard));
-            }
-            else
-                throw DeckFileFormatError(i+1); 
+            monsters.push_back(move(stringToBattleCard(name[i])));
         }
         else if(names[i] != "Gang" && names[i] != "EndGang" && !readingGang)
         {
@@ -128,6 +110,26 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
         throw DeckFileInvalidSize();
     }
     return deck;
+}
+
+static stringToBattleCard(Const string&)
+{
+    if(names[i] == "Goblin")
+    {
+        unique_ptr<BattleCard> currentCard(new Goblin());
+        return currentCard;
+    }
+    if(names[i] == "Vampire")
+    {
+        unique_ptr<BattleCard> currentCard(new Vampire());
+        return currentCard;
+    }
+    if (names[i] == "Dragon")
+    {
+        unique_ptr<BattleCard> currentCard(new Dragon());
+        return currentCard;
+    }
+    throw DeckFileFormatError(i+1); 
 }
 
 Mtmchkin::Mtmchkin(const std::string fileName) : m_deck(stringsToDeck(linesToVector(fileName))),
