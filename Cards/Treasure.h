@@ -13,11 +13,6 @@ class Treasure : public Card
     Treasure() = default;
 
     /**
-     * @brief Destroy the Treasure object
-     */
-    ~Treasure() =default;
-
-    /**
      * @brief Default Copy Constructor
      * 
      * @param treasure 

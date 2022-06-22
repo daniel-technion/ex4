@@ -15,7 +15,7 @@ class Gang : public Card
      * 
      * @param battleCards the monsters of the gang
      */
-    Gang(vector<unique_ptr<BattleCard>> battleCards);
+    Gang(vector<unique_ptr<BattleCard>>& battleCards);
 
     /**
      * @brief Destroy the Gang object

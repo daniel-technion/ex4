@@ -13,11 +13,6 @@ class Pitfall : public Card
     Pitfall() = default;
 
     /**
-     * @brief Destroy the Pitfall object
-     */
-    ~Pitfall() = default;
-
-    /**
      * @brief Default Assigment Opertor
      * 
      * @param Pitfall 

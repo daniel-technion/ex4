@@ -12,11 +12,6 @@ class Barfight : public Card
     Barfight() = default;
 
     /**
-     * @brief Destroy the Barfight object
-     */
-    ~Barfight() = default;
-
-    /**
      * @brief Default Copy Constructor
      * @param barfight 
      */

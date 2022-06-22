@@ -83,9 +83,13 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
 
         else if(current_str == "EndGang" && readingGang)
         {
-            unique_ptr<Card> gang(new Gang(move(monsters)));
+            unique_ptr<Card> gang(new Gang(monsters));
             deck.push(move(gang));
-            monsters.clear();
+            for(unsigned int j=0; j<monsters.size(); j++)
+            {
+                monsters.pop_back();
+            }
+            //monsters.clear();
             readingGang = false;
         }
 
@@ -128,7 +132,7 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
     }
     if (readingGang)
     {
-        throw DeckFileFormatError(names.size()); //TODO: +1???????
+        throw DeckFileFormatError(names.size()); 
     }
     if(deck.size() < 5) //TODO: CHANGE TO STATIC
     {
@@ -138,8 +142,7 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
 }
 
 Mtmchkin::Mtmchkin(const std::string fileName) : m_deck(stringsToDeck(linesToVector(fileName))),
-                                                 m_activePlayers(playersInitialization())
-                                                                                         
+                                                 m_activePlayers(playersInitialization())                                                                                       
 {}
 
 void Mtmchkin::playRound()

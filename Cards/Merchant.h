@@ -13,11 +13,6 @@ class Merchant : public Card
     Merchant()= default;
 
     /**
-     * @brief Destroy the Merchant object
-     */
-    ~Merchant() = default;
-
-    /**
      * @brief Default Copy Constructor
      * 
      * @param merchant 

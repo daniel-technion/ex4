@@ -15,7 +15,7 @@ class Vampire : public BattleCard
      * @brief Destroy the Vampire object
      * 
      */
-    ~Vampire() = default;
+    //~Vampire() = default;
 
     /**
      * @brief Construct a new Vampire object

@@ -18,7 +18,7 @@ class BattleCard : public Card
     /**
      * @brief Destroy the Battle Card object
      */
-    ~BattleCard() = default;
+    virtual ~BattleCard() = default;
 
     /**
      * @brief Deafult Copy Constructor

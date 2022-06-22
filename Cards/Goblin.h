@@ -14,7 +14,7 @@ class Goblin : public BattleCard
     /**
      * @brief Destroy the Goblin object
      */
-    ~Goblin() = default ;
+    //~Goblin() = default ;
 
     /**
      * @brief Default Copy Constructor

@@ -14,11 +14,6 @@ class Fighter : public Player
     Fighter(const string& name);
 
     /**
-     * @brief Destroy the Fighter object
-     */
-    ~Fighter() = default;
-
-    /**
      * @brief Default Copy Constructor
      * 
      * @param fighter 

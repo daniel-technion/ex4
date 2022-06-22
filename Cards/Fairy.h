@@ -13,11 +13,6 @@ class Fairy : public Card
     Fairy() = default;
 
     /**
-     * @brief Destroy the Fairy object
-     */
-    ~Fairy() = default;
-
-    /**
      * @brief Default Copy Constructor
      * @param fairy 
      */

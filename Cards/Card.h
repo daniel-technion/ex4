@@ -14,7 +14,7 @@ class Card
     /**
      * @brief Destroy the Card object
      */
-    ~Card() = default;
+    virtual ~Card() = default;
 
     /**
      * @brief Default Copy Constructor

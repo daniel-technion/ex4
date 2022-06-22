@@ -18,7 +18,7 @@ class Dragon : public BattleCard
     /**
      * @brief Destroy the Dragon object
      */
-    ~Dragon() = default;
+    //~Dragon() = default;
 
     /**
      * @brief Default Copt Constructor

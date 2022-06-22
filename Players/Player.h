@@ -3,8 +3,6 @@
 
 #include <string>
 
-using namespace std;
-
 
 class Player {
     public:
@@ -20,7 +18,7 @@ class Player {
     the following are default because we are leaning on the string class d'tor + copy c'tor + assigment operator 
     to take care of the allocations and deletings.
      */
-    ~Player() = default;
+    virtual ~Player() = default;
     Player(const Player& player) = default;
     Player& operator=(const Player& player) = default;
 

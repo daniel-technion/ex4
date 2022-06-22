@@ -14,12 +14,6 @@ class Wizard : public Player
     Wizard(const string& name);
 
     /**
-     * @brief Destroy the Wizard object
-     * 
-     */
-    ~Wizard() = default;
-
-    /**
      * @brief Default Copy Constructor
      * 
      * @param wizard 

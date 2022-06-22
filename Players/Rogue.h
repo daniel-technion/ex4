@@ -14,12 +14,6 @@ class Rogue : public Player
     Rogue(const string& name);
 
     /**
-     * @brief Destroy the Rogue object
-     * 
-     */
-    ~Rogue() = default;
-
-    /**
      * @brief Default Copy Constructor
      * 
      * @param rogue 
