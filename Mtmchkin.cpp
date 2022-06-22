@@ -73,59 +73,50 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
     vector<unique_ptr<BattleCard>> monsters;
     for(unsigned int i=0; i<names.size(); i++)
     {
-        string current_str = names[i];
-        if(current_str == "Gang" && !readingGang)
+        if(names[i] == "Gang" && !readingGang)
         {
             readingGang = true;
         }
-        else if(current_str == "Gang" && readingGang)
+        else if((names[i] == "Gang" && readingGang) || (names[i] == "EndGang" && !readingGang))
         {
             throw DeckFileFormatError(i+1);
         }
-
-        else if(current_str == "EndGang" && readingGang)
+        else if(names[i] == "EndGang" && readingGang)
         {
             unique_ptr<Card> gang(new Gang(monsters));
             deck.push(move(gang));
             monsters.clear();
             readingGang = false;
         }
-
-        else if(current_str == "EndGang" && !readingGang)
+        else if(names[i] != "Gang" && names[i] != "EndGang" && readingGang)
         {
-            throw DeckFileFormatError(i+1);
-        }
-
-        else if(current_str != "Gang" && current_str != "EndGang" && readingGang)
-        {
-            if(names[i] != "Goblin" && names[i] != "Vampire" && names[i] != "Dragon")
-            {
-                throw DeckFileFormatError(i+1);
-            }
             if(names[i] == "Goblin")
             {
                 unique_ptr<BattleCard> currentCard(new Goblin());
                 monsters.push_back(move(currentCard));
             }
-            if(names[i] == "Vampire")
+
+            else if(names[i] == "Vampire")
             {
                 unique_ptr<BattleCard> currentCard(new Vampire());
                 monsters.push_back(move(currentCard));
             }
-            if(names[i] == "Dragon")
+
+            else if (names[i] == "Dragon")
             {
                 unique_ptr<BattleCard> currentCard(new Dragon());
                 monsters.push_back(move(currentCard));
             }
+            else
+                throw DeckFileFormatError(i+1); 
         }
-
-        else if(current_str!= "Gang" && current_str != "EndGang" && !readingGang)
+        else if(names[i] != "Gang" && names[i] != "EndGang" && !readingGang)
         {
-            if(stringToCard(current_str) == nullptr)
+            if(stringToCard(names[i]) == nullptr)
             {
                 throw DeckFileFormatError(i+1);
             }
-            deck.push(move(stringToCard(current_str)));
+            deck.push(move(stringToCard(names[i])));
         }
     }
     if (readingGang)
