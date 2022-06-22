@@ -86,6 +86,8 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
         else if(current_str == "EndGang" && readingGang)
         {
             unique_ptr<Card> gang(new Gang(monsters));
+            deck.push(move(gang));
+            monsters.clear();
             readingGang = false;
         }
 
