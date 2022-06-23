@@ -1,11 +1,11 @@
 
-#include "Mtmchkin.h"
+#include "../Mtmchkin.h"
 
 int main()
 {
    try
    {
-       Mtmchkin game("deck.txt");
+       Mtmchkin game("./tool/deck.txt");
        while(game.isGameOver()== false)
        {
            game.playRound();

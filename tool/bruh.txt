@@ -1,0 +1,10 @@
+Gang
+Vampire
+Vampire
+EndGang
+Goblin
+Goblin
+Dragon
+Dragon
+Pitfall
+Barfight
