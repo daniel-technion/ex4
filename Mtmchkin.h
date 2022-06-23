@@ -82,6 +82,7 @@ public:
     int m_roundCount = 0;
     int m_roundSize = 0;
 
+    const static int MIN_DECK_SIZE = 5;
     static std::deque<std::unique_ptr<Player>> playersInitialization();
     static bool validateTeamSizeInput(std::string input);
     static bool validateNameInput(std::string input);

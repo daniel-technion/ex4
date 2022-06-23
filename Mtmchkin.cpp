@@ -2,6 +2,26 @@
 
 using namespace std;
 
+static unique_ptr<BattleCard> stringToBattleCard(const string& name, int lineNumber)
+{
+    if(name == "Goblin")
+    {
+        unique_ptr<BattleCard> currentCard(new Goblin());
+        return currentCard;
+    }
+    if(name == "Vampire")
+    {
+        unique_ptr<BattleCard> currentCard(new Vampire());
+        return currentCard;
+    }
+    if (name == "Dragon")
+    {
+        unique_ptr<BattleCard> currentCard(new Dragon());
+        return currentCard;
+    }
+    throw DeckFileFormatError(lineNumber+1); 
+}
+
 static vector<string> linesToVector(string filename)
 {
     printStartGameMessage();
@@ -73,66 +93,40 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
     vector<unique_ptr<BattleCard>> monsters;
     for(unsigned int i=0; i<names.size(); i++)
     {
-        string current_str = names[i];
-        if(current_str == "Gang" && !readingGang)
+        if(names[i] == "Gang" && !readingGang)
         {
             readingGang = true;
         }
-        else if(current_str == "Gang" && readingGang)
+        else if((names[i] == "Gang" && readingGang) || (names[i] == "EndGang" && !readingGang))
         {
             throw DeckFileFormatError(i+1);
         }
-
-        else if(current_str == "EndGang" && readingGang)
+        else if(names[i] == "EndGang" && readingGang)
         {
             unique_ptr<Card> gang(new Gang(monsters));
             deck.push(move(gang));
             monsters.clear();
             readingGang = false;
         }
-
-        else if(current_str == "EndGang" && !readingGang)
+        else if(names[i] != "Gang" && names[i] != "EndGang" && readingGang)
         {
-            throw DeckFileFormatError(i+1);
+            unique_ptr<BattleCard> newCard = stringToBattleCard(names[i], i);
+            monsters.push_back(move(stringToBattleCard(names[i], i)));
         }
-
-        else if(current_str != "Gang" && current_str != "EndGang" && readingGang)
+        else if(names[i] != "Gang" && names[i] != "EndGang" && !readingGang)
         {
-            if(names[i] != "Goblin" && names[i] != "Vampire" && names[i] != "Dragon")
+            if(stringToCard(names[i]) == nullptr)
             {
                 throw DeckFileFormatError(i+1);
             }
-            if(names[i] == "Goblin")
-            {
-                unique_ptr<BattleCard> currentCard(new Goblin());
-                monsters.push_back(move(currentCard));
-            }
-            if(names[i] == "Vampire")
-            {
-                unique_ptr<BattleCard> currentCard(new Vampire());
-                monsters.push_back(move(currentCard));
-            }
-            if(names[i] == "Dragon")
-            {
-                unique_ptr<BattleCard> currentCard(new Dragon());
-                monsters.push_back(move(currentCard));
-            }
-        }
-
-        else if(current_str!= "Gang" && current_str != "EndGang" && !readingGang)
-        {
-            if(stringToCard(current_str) == nullptr)
-            {
-                throw DeckFileFormatError(i+1);
-            }
-            deck.push(move(stringToCard(current_str)));
+            deck.push(move(stringToCard(names[i])));
         }
     }
     if (readingGang)
     {
-        throw DeckFileFormatError(names.size()); 
+        throw DeckFileFormatError(names.size()+1); 
     }
-    if(deck.size() < 5) //TODO: CHANGE TO STATIC
+    if(deck.size() < MIN_DECK_SIZE) //TODO: CHANGE TO STATIC
     {
         throw DeckFileInvalidSize();
     }
