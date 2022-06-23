@@ -2,7 +2,7 @@
 #include "../Mtmchkin.h"
 
 int main()
-{
+{ 
    try
    {
        Mtmchkin game("./tool/deck.txt");
@@ -15,7 +15,6 @@ int main()
    {
        std::cout << e.what() << '\n';
    }
-    
 }
 
 

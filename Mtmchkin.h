@@ -38,6 +38,10 @@ public:
     *      A new instance of Mtmchkin.
     */
     Mtmchkin(const std::string fileName);
+
+    ~Mtmchkin() = default;
+    Mtmchkin(const Mtmchkin& mtmchkin) = delete;
+    Mtmchkin& operator=(const Mtmchkin& mtmchkin) = default;
    
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -82,12 +86,17 @@ public:
     int m_roundCount = 0;
     int m_roundSize = 0;
 
-    const static int MIN_DECK_SIZE = 5;
+    static const int MIN_DECK_SIZE = 5;
+    static const int MIN_TEAM_SIZE = 2;
+    static const int MAX_TEAM_SIZE = 6;
+    static const int MAX_NAME_LENGTH = 15;
+    static std::queue<std::unique_ptr<Card>> stringsToDeck(std::vector<std::string> names);
     static std::deque<std::unique_ptr<Player>> playersInitialization();
     static bool validateTeamSizeInput(std::string input);
     static bool validateNameInput(std::string input);
     static bool validatePlayerTypeInput(std::string input);
     static std::unique_ptr<Player> stringToPlayer(std::string playerType, std::string playerName);
+    static std::unique_ptr<BattleCard> stringToBattleCard(const std::string& name, int lineNumber);
 };
 
 #endif /* MTMCHKIN_H_ */

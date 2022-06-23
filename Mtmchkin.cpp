@@ -2,7 +2,7 @@
 
 using namespace std;
 
-static unique_ptr<BattleCard> stringToBattleCard(const string& name, int lineNumber)
+unique_ptr<BattleCard> Mtmchkin::stringToBattleCard(const string& name, int lineNumber)
 {
     if(name == "Goblin")
     {
@@ -86,7 +86,7 @@ static unique_ptr<Card> stringToCard(string name)
 }
 
 
-static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
+queue<unique_ptr<Card>> Mtmchkin::stringsToDeck(vector<string> names)
 {
     queue<unique_ptr<Card>> deck;
     bool readingGang = false;
@@ -126,7 +126,7 @@ static queue<unique_ptr<Card>> stringsToDeck(vector<string> names)
     {
         throw DeckFileFormatError(names.size()+1); 
     }
-    if(deck.size() < MIN_DECK_SIZE) //TODO: CHANGE TO STATIC
+    if(deck.size() < MIN_DECK_SIZE) 
     {
         throw DeckFileInvalidSize();
     }
@@ -257,7 +257,7 @@ bool Mtmchkin::validateTeamSizeInput(string input)
     {
         return false;
     }  
-    if(n>6 || n<2)
+    if(n > MAX_TEAM_SIZE || n < MIN_TEAM_SIZE)
     {
         return false;
     }
@@ -275,7 +275,7 @@ bool Mtmchkin::validateNameInput(string input)
         }
     }
     bool isLengthValid = false;
-    if (input.length() <= 15)
+    if (input.length() <= MAX_NAME_LENGTH)
     {
        isLengthValid = true;
     }
